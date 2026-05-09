@@ -3,105 +3,637 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ランキング</title>
-
+  <title>2026年ランキング | 作品レビューサイト</title>
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      margin: 0;
-      font-family: "メイリオ", sans-serif;
-      background-color: white;
+      font-family: "メイリオ", "Hiragino Kaku Gothic ProN", sans-serif;
+      background-image: repeating-conic-gradient(#fff 0% 25%, #fce4ec 0% 50%);
+      background-size: 40px 40px;
       background-attachment: fixed;
-      color: black
+      color: #222;
+      min-height: 100vh;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid #f48fb1;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .75rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: #c2185b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 13px;
+      text-decoration: none;
+      color: #ad1457;
+      background: #fce4ec;
+      border: 1px solid #f48fb1;
+      padding: 5px 14px;
+      border-radius: 20px;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+
+    nav a:hover { background: #f48fb1; color: #fff; }
+    nav a.active { background: #e91e63; color: #fff; border-color: #e91e63; }
+
+    /* ===== MAIN ===== */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3rem;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      background: rgba(255,255,255,0.9);
+      border-radius: 18px;
+      border: 1px solid #f48fb1;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-header h1 {
+      font-size: 1.4rem;
+      color: #c2185b;
+      margin-bottom: .4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .page-header p {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    /* ===== SECTION HEADING ===== */
+    .section-head {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #c2185b;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-left: 4px;
+    }
+
+    /* ===== TOP 5 CARDS (big) ===== */
+    .top5 {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .top-card {
+      background: rgba(255,255,255,0.93);
+      border-radius: 16px;
+      border: 1px solid #f48fb1;
+      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    .top-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(233,30,99,.1);
+    }
+
+    .rank-badge {
+      min-width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .badge-1 { background: #e91e63; color: #fff; font-size: 15px; }
+    .badge-2 { background: #f06292; color: #fff; }
+    .badge-3 { background: #f48fb1; color: #fff; }
+    .badge-4 { background: #fce4ec; color: #c2185b; border: 1px solid #f48fb1; }
+    .badge-5 { background: #fce4ec; color: #c2185b; border: 1px solid #f48fb1; }
+
+    .top-card-body { flex: 1; }
+
+    .top-card-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+
+    .genre-tag {
+      display: inline-block;
+      font-size: 11px;
+      color: #ad1457;
+      background: #fce4ec;
+      border-radius: 8px;
+      padding: 1px 8px;
+      margin-bottom: 6px;
+    }
+
+    .top-card-text {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.75;
+    }
+
+    /* ===== OTHER REVIEWS LIST ===== */
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .review-item {
+      background: rgba(255,255,255,0.88);
+      border-radius: 12px;
+      border: 1px solid #f8bbd0;
+      padding: .8rem 1rem;
+      transition: background .12s;
+    }
+
+    .review-item:hover { background: rgba(255,255,255,0.98); }
+
+    .review-item-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #c2185b;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .review-item-text {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .review-item-text:empty::after {
+      content: "—";
+      color: #ccc;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2rem;
+      color: #e91e63;
+      text-decoration: none;
+      font-size: 13px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid #f48fb1;
+      padding: 6px 16px;
+      border-radius: 20px;
+      transition: background .15s;
+    }
+
+    .back-link:hover { background: #fce4ec; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 12px;
+      color: #ad1457;
+      border-top: 1px solid #f8bbd0;
+      background: rgba(255,255,255,0.7);
     }
   </style>
 </head>
+<body>
 
-<script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
-    }
-</script>
+  <header>
+    <a class="logo" href="index.html">⭐ 作品レビューサイト</a>
+    <nav>
+      <ul>
+        <li><a href="ranking2026.html" class="active">2026年のランキング</a></li>
+        <li><a href="blog.html">ブログ</a></li>
+        <li><a href="otaku.html">ALL TIME BEST</a></li>
+      </ul>
+    </nav>
+  </header>
 
-</head>
-<body style="font-family: sans-serif; background-color: white; color: black;">
-  <h1>書評📝</h1>
+  <main>
 
-  <p>備忘録。書評なのでネタバレを含みます。ランキングは上下します。最終的な2026年のランキングは年末に決まります。</p>
+    <div class="page-header">
+      <h1>📝 書評 — 2026年ランキング</h1>
+      <p>備忘録。書評なのでネタバレを含みます。ランキングは上下します。最終的な2026年のランキングは年末に決まります。</p>
+    </div>
 
-  <h2>最新記事</h2>
-  <ul>
-    <li><strong>１位　十角館の殺人（映画）</strong> ミステリー小説にハマったきっかけの小説。面白すぎる</li>
-    <li><strong>２位　閃光のハサウェイ　キルケーの魔女（映画）</strong> すごかった。コンクリートの冷たい匂いがしたし、鉄の焼けた匂いもした。匂いと温度が伝わってきた。アニメでこんなに絵以外の情報が伝わってくるなんてすごい。でもAIを使ってるなって分かってしまったのは唯一の難点かなって。ただこの映画のすごいところはもう一つあって、それは最初のガンダムを観てみたくなるような、ファーストガンダムの宣伝にもなっているというところ</li>
-    <li><strong>３位　WALL-E（映画）</strong> ピクサーでナンバーワンの面白さ。主人公が言葉を発せずとも感情が分かるって、それだけでこの映画の表現力がすごいことが分かる</li>
-    <li><strong>４位　マーダーズ・イン・ビルディング　シーズン６（米国ドラマ）</strong> コメディミステリードラマ。クスッとなる脚本が最高</li>
-    <li><strong>５位　新世界より（小説）</strong> 上巻では物語がゆっくり進むんだけど、中巻から「この本買ってよかった！　最高！」ってなる。下巻になるとエンディングが気になって捲る手が止まらなくなる</li>
-    <li><strong>アーロと少年（映画）</strong> 最後にセリフなしの演出でちょっと泣いた。ピクサー最強すぎる</li>
-    <li><strong>モンスターズ・ユニバーシティ（映画）</strong> </li>
-    <li><strong>カールじいさんの空飛ぶ家（映画）</strong> 初っ端10分で号泣した。ピクサー最高傑作。主人公がおじいちゃんなのに、子供でも共感できそうな内容なのがすごい</li>
-    <li><strong>トイストーリー３（映画）</strong> </li>
-    <li><strong>モンスターズインク（映画）</strong> 面白かった！　ブウが可愛いすぎる</li>
-    <li><strong>記憶力をよくする（新書）</strong> こんなにブルーバックスって面白いんだ。こんなに読みやすい科学書初めて読んだ</li>
-    <li><strong>ひつじ探偵（映画）</strong> 期待してなかったけど、緩急あって面白かった。コメディのミステリー映画だった</li>
-    <li><strong>ボツ 『少年ジャンプ』伝説の編集長の“嫌われる”仕事術（本）</strong> これを出版できるのがすごい。ずっと毒舌</li>
-    <li><strong>メリダと恐ろしの森（映画）</strong> </li>
-    <li><strong>トイストーリー（映画）</strong> 面白ろ！！！　おもちゃが動いてたらのIFって子供が観たらワクワクするよね</li>
-    <li><strong>ハウス・オブ・グッチ（映画）</strong> </li>
-    <li><strong>葬送のフリーレン　シーズン２（アニメ）</strong> シーズン１よりも面白かったし、クオリティーがより高い。緩急あるのが良い</li>
-    <li><strong>レミーのおいしいレストラン（映画）</strong> 面白かった！ すごく可愛い映画だった</li>
-    <li><strong>めぞん一刻（漫画）</strong> 面白かった。がっつり大人な恋愛だった</li>
-    <li><strong>ゴールデンカムイ（アニメ映画）ビール工場編</strong> やっぱり面白い。最高</li>
-    <li><strong>僕らの七日間戦争（映画）</strong> 内容としては賛否両論あると思うがストーリーは面白い</li>
-    <li><strong>トイストーリー２（映画）</strong> 「カウボーイ」から「スペースレンジャー」になるって、アメリカ映画業界がそれまでカウボーイものをヒーローとして描いていたのに、段々世間がSFものに移り変わっていったハリウッド映画の縮図でもある気がする。たぶん"おもちゃは飾るものじゃなくて遊ぶものでしょ"っていうメッセージ込められてるものなんだと思うけど、私は博物館で飾られてた方が幸せだと思う……</li>
-    <li><strong>ハリーポッターとアズカバンの囚人（英語版原書）</strong> </li>
-    <li><strong>プロジェクトヘイルメアリー（映画）</strong> 中だるみがちょっとあったけど概ね満足</li>
-    <li><strong>からくりサーカス（漫画）</strong> この時代の少年漫画って確実に勢いで描いてるんだけど、それが良かったりする。藤田和日郎の女性のイメージが一見美化されてるようで、意外と現実的なのが面白い</li>
-    <li><strong>バグズライフ（映画）</strong> 面白かった。やっぱトイストーリーもそうだけど、虫の世界って男の子にとってはワクワクするよね。男の子がワクワクするものを題材に選んでるんだな</li>
-    <li><strong>ポケモンサンムーン（ゲーム）</strong> 面白かったけど、ちょっと最後のほう止まってしまった。四天王の前のレベル上げがきつかった</li>
-    <li><strong>ハリーポッターと秘密の部屋（英語版原書）</strong> 個人的に賢者の石よりも面白かった。映画だけ観てると分からないところが多かった。ジニーがなんでヴォルデモートに捕まるのか映画では分からなかったから小説読んでよかった。ウィーズリーの掘り下げも映画では省かれてたし。やっぱ小説を映画にするって時間の都合上難しいんだなって思った。</li>
-    <li><strong>不思議の国の数学者（映画）</strong> コンセプトは良いし、主人公の役者の演技が上手い。数学ってテーマは２時間で終わる映画にしにくいと思うけど上手いこと収まってて面白かった。ただ主人公がちょっと気が強すぎて感情移入できなかった</li>
-    <li><strong>九龍ジェネリックロマンス（漫画）</strong> </li>
-    <li><strong>ファインディングニモ（映画）</strong> 面白かった。これを子供のときに観たかったなって思ったくらいワクワクした</li>
-    <li><strong>白雪姫（映画）</strong> このクオリティーのアニメが1937年に放映されていたというのがすごい</li>
-    <li><strong>機動戦士ガンダム　逆襲のシャア（アニメ映画）</strong> 面白かった</li>
-    <li><strong>ぽこあポケモン（ゲーム）</strong> 子供向けの明るいディストピア。終盤にちょっと飽きかけてたけど面白かった</li>
-    <li><strong>ハリーポッターと秘密の部屋（映画）</strong> 小説版と比べると少し分かりにくい部分がある。語られてない部分が多い。でも映像技術はすごい</li>
-    <li><strong>カーズ（映画）</strong> 面白いけど、車に興味ないからな……。車に興味があればもっと面白く観れたかも</li>
-    <li><strong>シャターアイランド（英語）</strong> 面白い。多少予想はつくがそこそこ裏切られる。でも気分が下がってるときに観ない方が良い</li>
-    <li><strong>アントマン（映画）</strong> マーベル映画は時系列で観てるんだけど、すべてのマーベル映画で今のところ一番面白い。主人公に欠点と向上心があるのが良い</li>
-    <li><strong>マネーボール（映画）</strong> 希望と挫折の映画。面白かった</li>
-    <li><strong>ゴールデンカムイ（実写映画）網走監獄編</strong> 実写化成功してる映画の一つだと思う。最初は俳優発表されたときは「登場人物に見えないな」って思ったんだけど、動いたらゴールデンカムイの登場人物にしか見えなくて、特に鯉登少尉が似てた。</li>
-    <li><strong>阪急電車（小説）</strong> めちゃくちゃ文章が読みやすい。でも好みのストーリーではない</li>
-    <li><strong>怪人二十面相（小説）</strong> 面白いんだけど昔の文体でストーリーが入ってきにくい。名探偵コナンがここからインスパイアを受けたんだなって思った。もう一回読みたい</li>
-    <li><strong>ガンダム00　シーズン１（アニメ）</strong> 面白いけどガンダムの知識ないと割と難解なところがある。ガンダムは勢力図が分かりにくい</li>
-    <li><strong>ダンボ（映画）</strong> </li>
-    <li><strong>ピノキオ（映画）</strong> 面白かったけど、あんまり記憶に残らないかもしれない</li>
-    <li><strong>劇場版 機動戦士ガンダム（アニメ映画）</strong> ガンダムアニメを観る前に見ておけばよかった。分かりやすくて観やすい</li>
-    <li><strong>そして誰もいなくなった（小説）</strong> 横文字の登場人物は覚えるのが辛い。でも、最後が面白かった</li>
-    <li><strong>図書館戦争（小説）</strong> 題材が面白いし、興味深いけど、好みではないかも。もうちょっとダークさと意外性がほしい</li>
-    <li><strong>ドクターストレンジ（漫画）</strong> マーベル映画の中では断トツで面白い。アントマンの次に面白い</li>
-    <li><strong>星を継ぐ者（小説）</strong> 少し文章が難解。英語で読み返したい</li>
-    <li><strong>キャプテンアメリカ　ザファーストアベンジャーズ（映画）</strong> MCUフェーズ１の中で一番好き</li>
-    <li><strong>スパイダーマン２（映画）</strong> １よりも個人的に好きかもしれない</li>
-    <li><strong>ガーティアンズオブギャラクシー（映画）</strong> めっちゃバカ映画（笑）楽しい映画ではある</li>
-    <li><strong>スパイダーマン（映画）</strong> 分かりやすい勧善懲悪だったからちょっと物足りなかった。ヒロインの女の子が危険にさらされること多くて手に汗握った。絶対にスパイダーマンがヒロインを助けることを分かっていてもヒヤヒヤする。てか、ジェームス・フランコ若っ</li>
-    <li><strong>インクレディブルハルク（映画）</strong> ちょっとダークヒーロー感ある。単純なヒーロー映画で分かりやすい</li>
-    <li><strong>曾根崎心中（歌舞伎）</strong> 興味深かった。ちゃんと予習して観に行って、お初が話してるところ見て「ストーリーが分かるぞ！分かるぞ！」ってなったんだけど、徳兵衛の話してる日本語が難しくて……。もうちょっとなにが面白いのかを勉強しないとダメだな。でも演技はとにかく上手かった。歌舞伎俳優は演技上手いよ</li>
-    <li><strong>ガンダム00　シーズン２（アニメ）</strong> 勢力図が分からなくて難しい。分かりやすい勧善懲悪しか分からなくなってるのかもしれない。もう一度最初から勢力図を確認して観なおしたい</li>
-    <li><strong>アイアンマン２（映画）</strong> スパイダーマンと一緒で１よりも好きかもしれない。主人公の葛藤が丁寧に描かれてる</li>
-    <li><strong>アベンジャーズ　エイジオブウルトロン（映画）</strong> 面白かったけど、他人にオススメするほどではないかも。ただブラックウィドウの恋愛パートは良く分からなかった</li>
-    <li><strong>キャプテンアメリカ　ウィンターソルジャー（映画）</strong> 面白いけど、最後は絶対に主人公が助かるって分かってるといまいちハマることができない</li>
-    <li><strong>アベンジャーズ（映画）</strong> なるほど！今までのが全部繋がってるんだ！と思った。マークラファロはハルクに適役に合ってるな</li>
-    <li><strong>アイアンマン３（映画）</strong> ３はハラハラするけど２よりは面白くないかも</li>
-    <li><strong>アイアンマン（映画）</strong> マーベルなら最初にこれ観ろっておすすめされる映画なだけあって、分かりやすい</li>
-    <li><strong>マイティソー（映画）</strong> 北欧神話好きだから、登場人物に「おっ」ってなった</li>
-    <li><strong>マイティー・ソー　ダーク・ワールド（映画）</strong> 最初のマイティー・ソーのほうが面白かった気がする</li>
-    <li><strong>シビルウォー／キャプテンアメリカ（映画）</strong> ５分が長い。途中でギブアップ。これを面白いと思う時期が今じゃなかった</li>
-  </ul>
+    <!-- TOP 5 -->
+    <div class="section-head">🏆 最新トップ5</div>
+    <div class="top5">
 
-  <p>
-    <a href="index.html">
-      <span style="color: #d4af37;">←トップページに戻る</span>
-    </a>
-  </p>
+      <div class="top-card">
+        <div class="rank-badge badge-1">1</div>
+        <div class="top-card-body">
+          <div class="genre-tag">小説</div>
+          <div class="top-card-title">十角館の殺人</div>
+          <div class="top-card-text">ミステリー小説にハマったきっかけの小説。面白すぎる。</div>
+        </div>
+      </div>
+
+      <div class="top-card">
+        <div class="rank-badge badge-2">2</div>
+        <div class="top-card-body">
+          <div class="genre-tag">アニメ映画</div>
+          <div class="top-card-title">閃光のハサウェイ　キルケーの魔女</div>
+          <div class="top-card-text">コンクリートの冷たい匂い、鉄の焼けた匂い——映像だけで温度と匂いが伝わってくる。AIを使っていると分かってしまうのが唯一の難点だが、ファーストガンダムへの興味も引き立てる最高の宣伝にもなっている作品。</div>
+        </div>
+      </div>
+
+      <div class="top-card">
+        <div class="rank-badge badge-3">3</div>
+        <div class="top-card-body">
+          <div class="genre-tag">アニメ映画</div>
+          <div class="top-card-title">WALL-E</div>
+          <div class="top-card-text">ピクサーでナンバーワンの面白さ。主人公が言葉を発せずとも感情が分かる——その表現力だけでこの映画のすごさが伝わる。</div>
+        </div>
+      </div>
+
+      <div class="top-card">
+        <div class="rank-badge badge-4">4</div>
+        <div class="top-card-body">
+          <div class="genre-tag">米国ドラマ</div>
+          <div class="top-card-title">マーダーズ・イン・ビルディング　シーズン6</div>
+          <div class="top-card-text">コメディミステリードラマ。クスッとなる脚本が最高。</div>
+        </div>
+      </div>
+
+      <div class="top-card">
+        <div class="rank-badge badge-5">5</div>
+        <div class="top-card-body">
+          <div class="genre-tag">小説</div>
+          <div class="top-card-title">新世界より</div>
+          <div class="top-card-text">上巻では物語がゆっくり進むが、中巻から「この本買ってよかった！最高！」ってなる。下巻になるとエンディングが気になって捲る手が止まらなくなる。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ALL REVIEWS -->
+    <div class="section-head">📋 全レビュー一覧</div>
+    <div class="review-list">
+
+      <div class="review-item">
+        <div class="review-item-title">アーロと少年 <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">最後にセリフなしの演出でちょっと泣いた。ピクサー最強すぎる。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">モンスターズ・ユニバーシティ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text"></div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">カールじいさんの空飛ぶ家 <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">初っ端10分で号泣した。ピクサー最高傑作。主人公がおじいちゃんなのに、子供でも共感できそうな内容なのがすごい。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">トイストーリー３ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text"></div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">モンスターズインク <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">面白かった！ブウが可愛いすぎる。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">記憶力をよくする <span class="genre-tag">新書</span></div>
+        <div class="review-item-text">こんなにブルーバックスって面白いんだ。こんなに読みやすい科学書初めて読んだ。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ひつじ探偵 <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">期待してなかったけど、緩急あって面白かった。コメディのミステリー映画だった。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ボツ 『少年ジャンプ』伝説の編集長の"嫌われる"仕事術 <span class="genre-tag">本</span></div>
+        <div class="review-item-text">これを出版できるのがすごい。ずっと毒舌。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">メリダと恐ろしの森 <span class="genre-tag">映画</span></div>
+        <div class="review-item-text"></div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">トイストーリー <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">面白ろ！！！おもちゃが動いてたらのIFって子供が観たらワクワクするよね。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ハウス・オブ・グッチ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text"></div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">葬送のフリーレン　シーズン2 <span class="genre-tag">アニメ</span></div>
+        <div class="review-item-text">シーズン１よりも面白かったし、クオリティーがより高い。緩急あるのが良い。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">レミーのおいしいレストラン <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">面白かった！すごく可愛い映画だった。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">めぞん一刻 <span class="genre-tag">漫画</span></div>
+        <div class="review-item-text">面白かった。がっつり大人な恋愛だった。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ゴールデンカムイ　ビール工場編 <span class="genre-tag">アニメ映画</span></div>
+        <div class="review-item-text">やっぱり面白い。最高。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">僕らの七日間戦争 <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">内容としては賛否両論あると思うがストーリーは面白い。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">トイストーリー２ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">「カウボーイ」から「スペースレンジャー」になるって、ハリウッド映画の縮図でもある気がする。"おもちゃは飾るものじゃなくて遊ぶものでしょ"というメッセージが込められてるんだと思うけど、私は博物館で飾られてた方が幸せだと思う……。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ハリーポッターとアズカバンの囚人 <span class="genre-tag">英語版原書</span></div>
+        <div class="review-item-text"></div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">プロジェクトヘイルメアリー <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">中だるみがちょっとあったけど概ね満足。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">からくりサーカス <span class="genre-tag">漫画</span></div>
+        <div class="review-item-text">この時代の少年漫画って確実に勢いで描いてるんだけど、それが良かったりする。藤田和日郎の女性のイメージが一見美化されてるようで、意外と現実的なのが面白い。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">バグズライフ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">面白かった。虫の世界って男の子にとってはワクワクするよね。男の子がワクワクするものを題材に選んでるんだな。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ポケモンサンムーン <span class="genre-tag">ゲーム</span></div>
+        <div class="review-item-text">面白かったけど、ちょっと最後のほう止まってしまった。四天王の前のレベル上げがきつかった。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ハリーポッターと秘密の部屋 <span class="genre-tag">英語版原書</span></div>
+        <div class="review-item-text">個人的に賢者の石よりも面白かった。映画だけ観てると分からないところが多かった。ジニーがなんでヴォルデモートに捕まるのかも映画では分からなかったから小説読んでよかった。やっぱ小説を映画にするって時間の都合上難しいんだな。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">不思議の国の数学者 <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">コンセプトは良いし、主人公の役者の演技が上手い。数学というテーマは２時間映画にしにくいと思うけど上手いこと収まってた。ただ主人公がちょっと気が強すぎて感情移入できなかった。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">九龍ジェネリックロマンス <span class="genre-tag">漫画</span></div>
+        <div class="review-item-text"></div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ファインディングニモ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">面白かった。これを子供のときに観たかったなって思ったくらいワクワクした。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">白雪姫 <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">このクオリティーのアニメが1937年に放映されていたというのがすごい。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">機動戦士ガンダム　逆襲のシャア <span class="genre-tag">アニメ映画</span></div>
+        <div class="review-item-text">面白かった。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ぽこあポケモン <span class="genre-tag">ゲーム</span></div>
+        <div class="review-item-text">子供向けの明るいディストピア。終盤にちょっと飽きかけてたけど面白かった。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ハリーポッターと秘密の部屋 <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">小説版と比べると少し分かりにくい部分がある。語られてない部分が多い。でも映像技術はすごい。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">カーズ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">面白いけど、車に興味ないからな……。車に興味があればもっと面白く観れたかも。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">シャターアイランド <span class="genre-tag">映画（英語）</span></div>
+        <div class="review-item-text">面白い。多少予想はつくがそこそこ裏切られる。でも気分が下がってるときに観ない方が良い。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">アントマン <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">マーベル映画の中では今のところ一番面白い。主人公に欠点と向上心があるのが良い。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">マネーボール <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">希望と挫折の映画。面白かった。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ゴールデンカムイ　網走監獄編 <span class="genre-tag">実写映画</span></div>
+        <div class="review-item-text">実写化成功してる映画の一つだと思う。最初は「登場人物に見えないな」って思ったんだけど、動いたらゴールデンカムイの登場人物にしか見えなかった。特に鯉登少尉が似てた。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">阪急電車 <span class="genre-tag">小説</span></div>
+        <div class="review-item-text">めちゃくちゃ文章が読みやすい。でも好みのストーリーではない。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">怪人二十面相 <span class="genre-tag">小説</span></div>
+        <div class="review-item-text">面白いんだけど昔の文体でストーリーが入ってきにくい。名探偵コナンがここからインスパイアを受けたんだなって思った。もう一回読みたい。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ガンダム00　シーズン1 <span class="genre-tag">アニメ</span></div>
+        <div class="review-item-text">面白いけどガンダムの知識ないと割と難解なところがある。勢力図が分かりにくい。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ダンボ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text"></div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ピノキオ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">面白かったけど、あんまり記憶に残らないかもしれない。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">劇場版 機動戦士ガンダム <span class="genre-tag">アニメ映画</span></div>
+        <div class="review-item-text">ガンダムアニメを観る前に見ておけばよかった。分かりやすくて観やすい。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">そして誰もいなくなった <span class="genre-tag">小説</span></div>
+        <div class="review-item-text">横文字の登場人物は覚えるのが辛い。でも、最後が面白かった。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">図書館戦争 <span class="genre-tag">小説</span></div>
+        <div class="review-item-text">題材が面白いし興味深いけど、好みではないかも。もうちょっとダークさと意外性がほしい。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ドクターストレンジ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">マーベル映画の中では断トツで面白い。アントマンの次に面白い。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">星を継ぐ者 <span class="genre-tag">小説</span></div>
+        <div class="review-item-text">少し文章が難解。英語で読み返したい。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">キャプテンアメリカ　ザ・ファーストアベンジャー <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">MCUフェーズ１の中で一番好き。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">スパイダーマン２ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">１よりも個人的に好きかもしれない。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ガーディアンズ・オブ・ギャラクシー <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">めっちゃバカ映画（笑）楽しい映画ではある。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">スパイダーマン <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">分かりやすい勧善懲悪だったからちょっと物足りなかった。てか、ジェームズ・フランコ若っ。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">インクレディブルハルク <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">ちょっとダークヒーロー感ある。単純なヒーロー映画で分かりやすい。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">曾根崎心中 <span class="genre-tag">歌舞伎</span></div>
+        <div class="review-item-text">興味深かった。ちゃんと予習して観に行って「ストーリーが分かるぞ！」ってなったんだけど、徳兵衛の日本語が難しくて……。でも演技はとにかく上手かった。歌舞伎俳優は演技上手いよ。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">ガンダム00　シーズン2 <span class="genre-tag">アニメ</span></div>
+        <div class="review-item-text">勢力図が分からなくて難しい。もう一度最初から勢力図を確認して観なおしたい。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">アイアンマン２ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">スパイダーマンと一緒で１よりも好きかもしれない。主人公の葛藤が丁寧に描かれてる。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">アベンジャーズ　エイジ・オブ・ウルトロン <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">面白かったけど、他人にオススメするほどではないかも。ブラックウィドウの恋愛パートはよく分からなかった。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">キャプテンアメリカ　ウィンターソルジャー <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">面白いけど、最後は絶対に主人公が助かるって分かってるといまいちハマることができない。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">アベンジャーズ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">なるほど！今までのが全部繋がってるんだ！と思った。マーク・ラファロはハルクに適役だな。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">アイアンマン３ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">３はハラハラするけど２よりは面白くないかも。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">アイアンマン <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">マーベルなら最初にこれ観ろっておすすめされる映画なだけあって、分かりやすい。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">マイティ・ソー <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">北欧神話好きだから、登場人物に「おっ」ってなった。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">マイティ・ソー　ダーク・ワールド <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">最初のマイティ・ソーのほうが面白かった気がする。</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">シビルウォー／キャプテンアメリカ <span class="genre-tag">映画</span></div>
+        <div class="review-item-text">５分が長い。途中でギブアップ。これを面白いと思う時期が今じゃなかった。</div>
+      </div>
+
+    </div>
+
+    <a class="back-link" href="index.html">← トップページに戻る</a>
+
+  </main>
+
+  <footer>
+    <p>© レビューサイト</p>
+  </footer>
+
 </body>
 </html>
