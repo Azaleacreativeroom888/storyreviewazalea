@@ -3,317 +3,490 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>趣味を見る</title>
+  <title>ALL TIME BEST | 作品レビューサイト</title>
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: sans-serif;
-      background-color: #e6e6fa;
-      padding: 20px;
+      font-family: "メイリオ", "Hiragino Kaku Gothic ProN", sans-serif;
+      background-image: repeating-conic-gradient(#fff 0% 25%, #fce4ec 0% 50%);
+      background-size: 40px 40px;
+      background-attachment: fixed;
+      color: #222;
+      min-height: 100vh;
     }
-    .content {
-      max-width: 800px;
-      margin: auto;
+
+    header {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid #f48fb1;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .75rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    .talk-box {
-      background: #fff;
-      border-left: 5px solid #f69;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.05);
+
+    .logo {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: #c2185b;
+      text-decoration: none;
     }
-    h1 {
-      border-bottom: 2px solid #f69;
-      padding-bottom: 0.3em;
+
+    nav ul { list-style: none; display: flex; gap: .5rem; flex-wrap: wrap; }
+
+    nav a {
+      font-size: 13px;
+      text-decoration: none;
+      color: #ad1457;
+      background: #fce4ec;
+      border: 1px solid #f48fb1;
+      padding: 5px 14px;
+      border-radius: 20px;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    nav a:hover { background: #f48fb1; color: #fff; }
+    nav a.active { background: #e91e63; color: #fff; border-color: #e91e63; }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3rem;
+    }
+
+    .page-header {
+      background: rgba(255,255,255,0.9);
+      border-radius: 18px;
+      border: 1px solid #f48fb1;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .page-header h1 { font-size: 1.4rem; color: #c2185b; margin-bottom: .4rem; }
+    .page-header p { font-size: 13px; color: #666; line-height: 1.8; margin-top: .35rem; }
+
+    /* Category grid */
+    .categories {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 520px) { .categories { grid-template-columns: 1fr; } }
+
+    .cat-card {
+      background: rgba(255,255,255,0.92);
+      border-radius: 16px;
+      border: 1px solid #f48fb1;
+      padding: 1rem 1.1rem 1.1rem;
+    }
+
+    .cat-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #c2185b;
+      margin-bottom: .75rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid #fce4ec;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cat-list { list-style: none; }
+
+    .cat-list li {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.6;
+      padding: 3px 0;
+      border-bottom: 1px dotted #fce4ec;
+    }
+    .cat-list li:last-child { border-bottom: none; }
+
+    .cat-list .sub {
+      padding-left: 12px;
+      color: #777;
+      font-size: 12.5px;
+    }
+    .cat-list .sub::before { content: "└ "; color: #f48fb1; }
+
+    /* Full-width card (for longer lists) */
+    .cat-card.full { grid-column: 1 / -1; }
+    .cat-card.full .cat-list {
+      columns: 2;
+      column-gap: 1.5rem;
+    }
+    @media (max-width: 520px) { .cat-card.full .cat-list { columns: 1; } }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 1.75rem;
+      color: #e91e63;
+      text-decoration: none;
+      font-size: 13px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid #f48fb1;
+      padding: 6px 16px;
+      border-radius: 20px;
+      transition: background .15s;
+    }
+    .back-link:hover { background: #fce4ec; }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 12px;
+      color: #ad1457;
+      border-top: 1px solid #f8bbd0;
+      background: rgba(255,255,255,0.7);
     }
   </style>
 </head>
 <body>
-  <div class="content">
-    <h1>🎮 オタク部屋</h1>
-    <p>ここでは私が大好きな作品について語ります！</p>
-    <p>振り返れば、ここ20年ほどで本当にいろんなものに出会ってきたなぁと思います。</p>
-    <p>ここの作品はだいたい「私が推してるもの」と、「思い出のあるもの」の二つがあります</p>
-    <p>最近は新しいインプットは少なめですが、ここに書かれている作品を見返したり、漫画のために勉強したりしています。</p>
 
-    <div class="talk-box">
-      <h2>🍳 漫画</h2>
-      <p>ゴールデンカムイ</p>
-      <p>海獣の子</p>
-      <p>ダンジョン飯</p>
-      <p>ブラックジャック</p>
-      <p>銀の匙</p>
-      <p>BLUE GIANT</p>
-      <p>ヒカルの碁</p>
-      <p>NARUTO</p>
-      <p>フルーツバスケット</p>
-      <p>カードキャプターさくら</p>
-      <p>ツバサ</p>
-      <p>ふしぎ遊戯</p>
-      <p>銀魂</p>
-      <p>ドラゴンボール</p>
-      <p>ヘタリア</p>
-      <p>もやしもん</p>
-      <p>北北西に雲と住け</p>
-      <p>ダイの大冒険</p>
-      <p>百姓貴族</p>
-      <p>SPY FAMILY</p>
-      <p>チェンソーマン</p>
-      <p>九龍ジェネリックロマンス</p>
-      <p>帝一の国</p>
-      <p>MONSTER</p>
-      <p>天幕のジャードゥーガル</p>
-      <p>時空異邦人KYOKO</p>
-      <p>HUSH（バットマン）</p>
+  <header>
+    <a class="logo" href="index.html">⭐ 作品レビューサイト</a>
+    <nav>
+      <ul>
+        <li><a href="ranking2026.html">2026年のランキング</a></li>
+        <li><a href="blog.html">ブログ</a></li>
+        <li><a href="otaku.html" class="active">ALL TIME BEST</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="page-header">
+      <h1>🎮 オタク部屋 — ALL TIME BEST</h1>
+      <p>ここでは私が大好きな作品について語ります！</p>
+      <p>振り返れば、ここ20年ほどで本当にいろんなものに出会ってきたなぁと思います。</p>
+      <p>「私が推してるもの」と「思い出のあるもの」の二つがあります。最近は新しいインプットは少なめですが、ここに書かれている作品を見返したり、漫画のために勉強したりしています。</p>
     </div>
 
-    <div class="talk-box">
-      <h2>🪖 アニメ</h2>
-      <p>無職転生</p>
-      <p>涼宮ハルヒの憂鬱</p>
-      <p>メイドインアビス</p>
-      <p>エウレカセブン</p>
-      <p>天元突破グレンラガン</p>
-      <p>かぐや様は告らせたい</p>
-      <p>ゆるキャン△</p>
-      <p>マクロス７</p>
-      <p>無人惑星サヴァイヴ</p>
-      <p>かげきしょうじょ</p>
-      <p>逃げ上手の若君</p>
-      <p>桜蘭高校ホスト部</p>
-      <p>天穂のサクナヒメ</p>
-      <p>デジモン初代</p>
-      <p>血界戦線</p>
-      <p>電脳コイル</p>
-      <p>ワンピース</p>
-      <p>ガンダム　水星の魔女</p>
-      <p>Gガンダム</p>
-      <p>閃光のハサウェイ</p>
-      <p>ガンダムSEED</p>
-      <p>TRIGUN</p>
-      <p>エンジェリックレイヤー</p>
-      <p>本好きの下剋上</p>
+    <div class="categories">
+
+      <!-- 漫画 -->
+      <div class="cat-card">
+        <div class="cat-title">🍳 漫画</div>
+        <ul class="cat-list">
+          <li>ゴールデンカムイ</li>
+          <li>海獣の子</li>
+          <li>ダンジョン飯</li>
+          <li>ブラックジャック</li>
+          <li>銀の匙</li>
+          <li>BLUE GIANT</li>
+          <li>ヒカルの碁</li>
+          <li>NARUTO</li>
+          <li>フルーツバスケット</li>
+          <li>カードキャプターさくら</li>
+          <li>ツバサ</li>
+          <li>ふしぎ遊戯</li>
+          <li>銀魂</li>
+          <li>ドラゴンボール</li>
+          <li>ヘタリア</li>
+          <li>もやしもん</li>
+          <li>北北西に雲と住け</li>
+          <li>ダイの大冒険</li>
+          <li>百姓貴族</li>
+          <li>SPY FAMILY</li>
+          <li>チェンソーマン</li>
+          <li>九龍ジェネリックロマンス</li>
+          <li>帝一の国</li>
+          <li>MONSTER</li>
+          <li>天幕のジャードゥーガル</li>
+          <li>時空異邦人KYOKO</li>
+          <li>HUSH（バットマン）</li>
+        </ul>
+      </div>
+
+      <!-- アニメ -->
+      <div class="cat-card">
+        <div class="cat-title">🪖 アニメ</div>
+        <ul class="cat-list">
+          <li>無職転生</li>
+          <li>涼宮ハルヒの憂鬱</li>
+          <li>メイドインアビス</li>
+          <li>エウレカセブン</li>
+          <li>天元突破グレンラガン</li>
+          <li>かぐや様は告らせたい</li>
+          <li>ゆるキャン△</li>
+          <li>マクロス７</li>
+          <li>無人惑星サヴァイヴ</li>
+          <li>かげきしょうじょ</li>
+          <li>逃げ上手の若君</li>
+          <li>桜蘭高校ホスト部</li>
+          <li>天穂のサクナヒメ</li>
+          <li>デジモン初代</li>
+          <li>血界戦線</li>
+          <li>電脳コイル</li>
+          <li>ワンピース</li>
+          <li>ガンダム 水星の魔女</li>
+          <li>Gガンダム</li>
+          <li>閃光のハサウェイ</li>
+          <li>ガンダムSEED</li>
+          <li>TRIGUN</li>
+          <li>エンジェリックレイヤー</li>
+          <li>本好きの下剋上</li>
+        </ul>
+      </div>
+
+      <!-- 映画 -->
+      <div class="cat-card full">
+        <div class="cat-title">🍿 映画</div>
+        <ul class="cat-list">
+          <li>博士と彼女のセオリー</li>
+          <li>華麗なるギャッツビー</li>
+          <li>ブータン山の教室</li>
+          <li>運び屋</li>
+          <li>あの頃君を追いかけた</li>
+          <li>グラントリノ</li>
+          <li>ユージュアル・サスペクツ</li>
+          <li>Borat</li>
+          <li>レインマン</li>
+          <li>ターミナル</li>
+          <li>バックトゥザフューチャー</li>
+          <li>AWAKE</li>
+          <li>ソーシャルネットワーク</li>
+          <li>スターウォーズ</li>
+          <li>ローグワン</li>
+          <li>ハリーポッター</li>
+          <li>旅するジーンズと16歳の夏</li>
+          <li>レミゼラブル</li>
+          <li>千と千尋の神隠し</li>
+          <li>ハウルの動く城</li>
+          <li>アルマゲドン</li>
+          <li>キャッチミーイフユーキャン</li>
+          <li>グッドウィルハンティング</li>
+          <li>レディプレイヤー1</li>
+          <li>ライフイズビューティフル</li>
+          <li>ハウエルズ家のちょっとおかしなお葬式</li>
+          <li>巣立ちのとき 教育は死なず</li>
+          <li>ローマの休日</li>
+          <li>ルックバック</li>
+          <li>最強の二人</li>
+          <li>リバー、流れないでよ</li>
+          <li>パイレーツオブカリビアン</li>
+          <li>The Walk</li>
+          <li>バタフライエフェクト</li>
+          <li>刑事ジョンブック</li>
+          <li>シェイプオブウォーター</li>
+          <li>スラムドックミリオネア</li>
+          <li>127時間</li>
+          <li>スティーブジョブズ</li>
+          <li>バットマン：ダークナイト</li>
+          <li>トイストーリー</li>
+          <li>トイストーリー２</li>
+          <li>モンスターズインク</li>
+          <li>ノートルダムの鐘</li>
+          <li>モンスターズユニバーシティ</li>
+          <li>WALL-E</li>
+          <li>カールじいさんの空飛ぶ家</li>
+        </ul>
+      </div>
+
+      <!-- ドラマ -->
+      <div class="cat-card">
+        <div class="cat-title">📺 連続ドラマ</div>
+        <ul class="cat-list">
+          <li>仮面ライダークウガ</li>
+          <li>仮面ライダーアギト</li>
+          <li>仮面ライダー龍騎</li>
+          <li>仮面ライダー555</li>
+          <li>仮面ライダー剣</li>
+          <li>仮面ライダー響鬼</li>
+          <li>仮面ライダー電王</li>
+          <li>JIN-仁-</li>
+          <li>BOSS</li>
+          <li>ショムニ</li>
+          <li>HERO</li>
+          <li>GOTHAM</li>
+          <li>The OC</li>
+          <li>How I Met Your Mother</li>
+          <li>The Big Bang Theory</li>
+          <li>NASHVILLE</li>
+          <li>大奥</li>
+          <li>ビーチボーイズ</li>
+          <li>龍馬伝</li>
+          <li>アンブレラアカデミー</li>
+          <li>クイーンズギャンビット</li>
+          <li>LOST</li>
+          <li>アンナチュラル</li>
+          <li>アンティーク</li>
+          <li>うぬぼれ刑事</li>
+          <li>Only Murders In The Building</li>
+          <li>The Bear</li>
+          <li>水戸黄門</li>
+          <li>トリック</li>
+          <li>コール・ザ・ミッドワイフ</li>
+        </ul>
+      </div>
+
+      <!-- 本 -->
+      <div class="cat-card">
+        <div class="cat-title">☕ 本</div>
+        <ul class="cat-list">
+          <li>原田マハ</li>
+          <li class="sub">生きる、ぼくら</li>
+          <li class="sub">たゆたえども沈まず</li>
+          <li class="sub">ロマンシェ</li>
+          <li class="sub">風のマジム</li>
+          <li class="sub">奇跡の人</li>
+          <li class="sub">キネマの神様</li>
+          <li class="sub">本日は、お日柄もよく</li>
+          <li>三浦しおん</li>
+          <li class="sub">舟を編む</li>
+          <li class="sub">神去なあなあ日常</li>
+          <li class="sub">木暮壮物語</li>
+          <li>夜のピクニック</li>
+          <li>羊と鋼の森</li>
+          <li>ツバキ共和国</li>
+          <li>昨夜のカレー、明日のパン</li>
+          <li>封神演義</li>
+          <li>薬屋のひとりごと</li>
+          <li>魔法使いの引っ越し屋</li>
+          <li>横浜駅SF</li>
+          <li>アルジャーノンに花束を</li>
+          <li>十角館の殺人</li>
+          <li>北欧神話（ニールゲイマン著）</li>
+          <li>華麗なるギャッツビー</li>
+          <li>ボツ（鳥嶋和彦著）</li>
+          <li>怒りのブレイクスルー（中村修二著）</li>
+          <li>ぼくらの七日間戦争</li>
+          <li>新世界より</li>
+          <li>丸マシリーズ</li>
+          <li>キノの旅</li>
+          <li>無職転生</li>
+          <li>クレヨン王国シリーズ</li>
+        </ul>
+      </div>
+
+      <!-- ゲーム -->
+      <div class="cat-card">
+        <div class="cat-title">🎮 ゲーム</div>
+        <ul class="cat-list">
+          <li>ホグワーツレガシー</li>
+          <li>ポケモン</li>
+          <li>Minecraft</li>
+          <li>龍が如く</li>
+          <li>ユニコーンオーバーロード</li>
+          <li>イナズマイレブン</li>
+          <li>インディビジブル</li>
+          <li>ドラゴンクエスト</li>
+          <li>グラブル</li>
+          <li>ツイステ</li>
+          <li>パイロットウィングス</li>
+          <li>逆転裁判</li>
+          <li>ぽこあポケモン</li>
+        </ul>
+      </div>
+
+      <!-- 絵 -->
+      <div class="cat-card">
+        <div class="cat-title">🎨 絵・画家</div>
+        <ul class="cat-list">
+          <li>Sergio Toppi</li>
+          <li>歌川国芳</li>
+          <li>ゴッホ</li>
+          <li>ルソー</li>
+          <li>藤田嗣治</li>
+          <li>Alex Ahad</li>
+          <li>Albrecht Dürer</li>
+          <li>Edgar Degas</li>
+          <li>葛飾北斎</li>
+          <li>ミレー</li>
+          <li>ミュシャ</li>
+          <li>Doug Chiang</li>
+          <li>吉田明彦</li>
+          <li>運慶</li>
+          <li>高畠華宵</li>
+          <li>東郷青児</li>
+        </ul>
+      </div>
+
+      <!-- 音楽 -->
+      <div class="cat-card">
+        <div class="cat-title">🎧 音楽</div>
+        <ul class="cat-list">
+          <li>宇多田ヒカル</li>
+          <li>ミセスグリーンアップル</li>
+          <li>King Gnu</li>
+          <li>Official髭男dism</li>
+          <li>Mr.Children</li>
+          <li>Fall Out Boy</li>
+          <li>Guns N' Roses</li>
+          <li>アイナ・ジ・エンド</li>
+          <li>Charlie Puth</li>
+          <li>Rita Ora</li>
+          <li>Owl City</li>
+          <li>Lady Gaga</li>
+          <li>Vaundy</li>
+          <li>5 Seconds of Summer</li>
+          <li>Creedence Clearwater Revival</li>
+          <li>Deco*27</li>
+          <li>じん</li>
+          <li>羊文学</li>
+          <li>Earth, Wind & Fire</li>
+          <li>キタニタツヤ</li>
+          <li>崎山蒼志</li>
+          <li>ロックマンの曲</li>
+          <li>ヨルシカ</li>
+          <li>布施明</li>
+          <li>尾崎紀世彦</li>
+          <li>嵐</li>
+          <li>Alexandros</li>
+          <li>Katy Perry</li>
+          <li>チャットモンチー</li>
+          <li>オアシス</li>
+          <li>U2</li>
+          <li>さくらみこ</li>
+          <li>Penthouse</li>
+        </ul>
+      </div>
+
+      <!-- 俳優 -->
+      <div class="cat-card">
+        <div class="cat-title">⭐ 俳優</div>
+        <ul class="cat-list">
+          <li>ゲイリー・オールドマン</li>
+          <li>キリアン・マーフィー</li>
+          <li>吉沢亮</li>
+          <li>若葉竜也</li>
+          <li>ナタリー・ポートマン</li>
+          <li>レオナルド・ディカプリオ</li>
+          <li>矢本悠馬</li>
+          <li>椎名桔平</li>
+          <li>天海祐希</li>
+          <li>戸田恵梨香</li>
+          <li>リリー・コリンズ</li>
+          <li>エディ・レッドメイン</li>
+          <li>モーガン・フリーマン</li>
+          <li>ハリソン・フォード</li>
+          <li>クリント・イーストウッド</li>
+          <li>ベネディクト・カンバーバッチ</li>
+          <li>アダム・ブロディ</li>
+          <li>レイトン・ミースター</li>
+          <li>フェリシティ・ジョーンズ</li>
+        </ul>
+      </div>
+
     </div>
 
-    <div class="talk-box">
-      <h2>🍿 映画</h2>
-      <p>博士と彼女のセオリー</p>
-      <p>華麗なるギャッツビー</p>
-      <p>ブータン山の教室</p>
-      <p>運び屋</p>
-      <p>あの頃君を追いかけた</p>
-      <p>グラントリノ</p>
-      <p>ユージュアル・サスペクツ</p>
-      <p>Borat</p>
-      <p>レインマン</p>
-      <p>ターミナル</p>
-      <p>バックトゥザフューチャー</p>
-      <p>AWAKE</p>
-      <p>ソーシャルネットワーク</p>
-      <p>スターウォーズ</p>
-      <p>ローグワン</p>
-      <p>ハリーポッター</p>
-      <p>旅するジーンズと16歳の夏</p>
-      <p>レミゼラブル</p>
-      <p>千と千尋の神隠し</p>
-      <p>ハウルの動く城</p>
-      <p>アルマゲドン</p>
-      <p>キャッチミーイフユーキャン</p>
-      <p>グッドウィルハンティング</p>
-      <p>レディプレイヤー1</p>
-      <p>ライフイズビューティフル</p>
-      <p>ハウエルズ家のちょっとおかしなお葬式</p>
-      <p>巣立ちのとき　教育は死なず</p>
-      <p>ローマの休日</p>
-      <p>ルックバック</p>
-      <p>最強の二人</p>
-      <p>リバー、流れないでよ</p>
-      <p>パイレーツオブカリビアン</p>
-      <p>The Walk</p>
-      <p>バタフライエフェクト</p>
-      <p>刑事ジョンブック</p>
-      <p>シェイプオブウォーター</p>
-      <p>スラムドックミリオネア</p>
-      <p>126時間</p>
-      <p>スティーブジョブズ</p>
-      <p>バットマン：ダークナイト</p>
-      <p>トイストーリー</p>
-      <p>トイストーリー２</p>
-      <p>モンスターズインク</p>
-      <p>ノートルダムの鐘</p>
-      <p>モンスターズユニバーシティ</p>
-      <p>WALL-E</p>
-      <p>カールじいさんの空飛ぶ家</p>
-    </div>
+    <a class="back-link" href="index.html">← トップページに戻る</a>
 
-    <div class="talk-box">
-      <h2>📺 連続ドラマ</h2>
-      <p>仮面ライダークウガ</p>
-      <p>仮面ライダーアギト</p>
-      <p>仮面ライダー龍騎</p>
-      <p>仮面ライダー555</p>
-      <p>仮面ライダー剣</p>
-      <p>仮面ライダー響鬼</p>
-      <p>仮面ライダー電王</p>
-      <p>JIN-仁-</p>
-      <p>BOSS</p>
-      <p>ショムニ</p>
-      <p>HERO</p>
-      <p>GOTHAM</p>
-      <p>The OC</p>
-      <p>How I met your mother</p>
-      <p>The Big Bang Theory</p>
-      <p>NASHVILLE（米国ドラマ）</p>
-      <p>大奥</p>
-      <p>ビーチボーイズ</p>
-      <p>龍馬伝</p>
-      <p>アンブレラアカデミー</p>
-      <p>クイーンズギャンビット</p>
-      <p>LOST</p>
-      <p>アンナチュラル</p>
-      <p>アンティーク</p>
-      <p>うぬぼれ刑事</p>
-      <p>Only Murders In The Building</p>
-      <p>The Bear</p>
-      <p>水戸黄門</p>
-      <p>トリック</p>
-      <p>コール・ザ・ミッドワイフ</p>
-    </div>
+  </main>
 
-      
-    <div class="talk-box">
-      <h2>☕ 本</h2>
-      <p>原田マハ</p>
-        <p>　生きる、ぼくら</p>
-        <p>　たゆたえども沈まず</p>
-        <p>　ロマンシェ</p>
-        <p>　風のマジム</p>
-        <p>　奇跡の人</p>
-        <p>　キネマの神様</p>
-        <p>　本日は、お日柄もよく</p>
-      <p>三浦しおん</p>
-        <p>　舟を編む</p>
-        <p>　神去なあなあ日常</p>
-        <p>　木暮壮物語</p>
-      <p>夜のピクニック</p>
-      <p>羊と鋼の森</p>
-      <p>ツバキ共和国</p>
-      <p>昨夜のカレー、明日のパン</p>
-      <p>封神演義</p>
-      <p>薬屋のひとりごと</p>
-      <p>魔法使いの引っ越し屋</p>
-      <p>横浜駅SF</p>
-      <p>アルジャーノンに花束を</p>
-      <p>十角館の殺人</p>
-      <p>北欧神話(ニールゲイマン著)</p>
-      <p>華麗なるギャッツビー</p>
-      <p>ボツ(鳥嶋和彦著)</p>
-      <p>怒りのブレイクスルー 「青色発光ダイオード」を開発して見えてきたこと(中村修二著)</p>
-      <p>ぼくらの七日間戦争</p>
-      <p>新世界より</p>
-      <p>丸マシリーズ</p>
-      <p>キノの旅</p>
-      <p>無職転生</p>
-      <p>薬屋のひとりごと</p>
-      <p>クレヨン王国シリーズ</p>
-    </div>
+  <footer>
+    <p>© レビューサイト</p>
+  </footer>
 
-    <div class="talk-box">
-      <h2>🎮 ゲーム</h2>
-      <p>ホグワーツレガシー</p>
-      <p>ポケモン</p>
-      <p>Minecraft</p>
-      <p>龍が如く</p>
-      <p>ユニコーンオーバーロード</p>
-      <p>イナズマイレブン</p>
-      <p>インディビジブル</p>
-      <p>ドラゴンクエスト</p>
-      <p>グラブル</p>
-      <p>ツイステ</p>
-      <p>パイロットウィングス</p>
-      <p>逆転裁判</p>
-      <p>ぽこあポケモン</p>
-    </div>
-
-    <div class="talk-box">
-      <h2>🎨 絵</h2>
-      <p>Sergio Toppi</p>
-      <p>歌川国芳</p>
-      <p>ゴッホ</p>
-      <p>ルソー</p>
-      <p>藤田嗣治</p>
-      <p>Alex Ahad（インディビジブルの絵師）</p>
-      <p>Albrecht Dürer</p>
-      <p>Edgar Degas</p>
-      <p>葛飾北斎</p>
-      <p>ミレー</p>
-      <p>ミュシャ</p>
-      <p>Doug Chiang</p>
-      <p>吉田明彦</p>
-      <p>運慶</p>
-      <p>高畠華宵</p>
-      <p>東郷青児</p>
-    </div>
-
-    <div class="talk-box">
-      <h2>🎧　音楽</h2>
-      <p>宇多田ヒカル</p>
-      <p>ミセスグリーンアップル</p>
-      <p>King Gnu</p>
-      <p>Official髭男dism</p>
-      <p>Mr.Children</p>
-      <p>Fall Out Boy</p>
-      <p>Guns N' Roses</p>
-      <p>アイナ・ジ・エンド</p>
-      <p>Charlie Puth</p>
-      <p>Rita Ora</p>
-      <p>Owl City</p>
-      <p>Lady Gaga</p>
-      <p>Vaundy</p>
-      <p>5 sesonds of summer</p>
-      <p>Creedence Clearwater Revival</p>
-      <p>Deco*27</p>
-      <p>じん</p>
-      <p>羊文学</p>
-      <p>Earth, Wind & Fire</p>
-      <p>キタニタツヤ</p>
-      <p>崎山蒼志</p>
-      <p>ロックマンの曲</p>
-      <p>ヨルシカ</p>
-      <p>布施明</p>
-      <p>尾崎紀世彦</p>
-      <p>嵐</p>
-      <p>Alexasandros</p>
-      <p>Katy Perry</p>
-      <p>チャットモンチー</p>
-      <p>オアシス</p>
-      <p>U2</p>
-      <p>さくらみこ</p>
-      <p>Penthouse</p>
-    </div>
-
-    <div class="talk-box">
-      <h2>⭐　俳優</h2>
-      <p>ゲイリーオールドマン</p>
-      <p>キリアンマーフィー</p>
-      <p>吉沢亮</p>
-      <p>若葉竜也</p>
-      <p>ナタリーポートマン</p>
-      <p>レオナルドディカプリオ</p>
-      <p>矢本悠馬</p>
-      <p>椎名桔平</p>
-      <p>天海祐希</p>
-      <p>戸田恵梨香</p>
-      <p>リリーコリンズ</p>
-      <p>エディレッドメイン</p>
-      <p>モーガンフリーマン</p>
-      <p>ハリソンフォード</p>
-      <p>クリントイーストウッド</p>
-      <p>ベネディクトカンバーバッチ</p>
-      <p>アダムブロディ</p>
-      <p>レイトンミースター</p>
-      <p>フェリシティジョーンズ</p>
-    </div>
-
- </body>
- </html>
+</body>
+</html>
