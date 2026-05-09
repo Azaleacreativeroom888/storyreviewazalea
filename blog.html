@@ -3,48 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ランキング</title>
-
+  <title>ブログ | 作品レビューサイト</title>
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      margin: 0;
-      font-family: "メイリオ", sans-serif;
-      background-color: white;
+      font-family: "メイリオ", "Hiragino Kaku Gothic ProN", sans-serif;
+      background-image: repeating-conic-gradient(#fff 0% 25%, #fce4ec 0% 50%);
+      background-size: 40px 40px;
       background-attachment: fixed;
-      color: black
+      color: #222;
+      min-height: 100vh;
+    }
+
+    header {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid #f48fb1;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .75rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: #c2185b;
+      text-decoration: none;
+    }
+
+    nav ul { list-style: none; display: flex; gap: .5rem; flex-wrap: wrap; }
+
+    nav a {
+      font-size: 13px;
+      text-decoration: none;
+      color: #ad1457;
+      background: #fce4ec;
+      border: 1px solid #f48fb1;
+      padding: 5px 14px;
+      border-radius: 20px;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    nav a:hover { background: #f48fb1; color: #fff; }
+    nav a.active { background: #e91e63; color: #fff; border-color: #e91e63; }
+
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3rem;
+    }
+
+    .page-header {
+      background: rgba(255,255,255,0.9);
+      border-radius: 18px;
+      border: 1px solid #f48fb1;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .page-header h1 { font-size: 1.4rem; color: #c2185b; margin-bottom: .35rem; }
+    .page-header p { font-size: 13px; color: #777; line-height: 1.7; }
+
+    .section-head {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #c2185b;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-left: 4px;
+    }
+
+    .posts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .post {
+      background: rgba(255,255,255,0.92);
+      border-radius: 14px;
+      border: 1px solid #f48fb1;
+      padding: 1rem 1.2rem;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: transform .15s;
+    }
+    .post:hover { transform: translateY(-2px); }
+
+    .post-date {
+      font-size: 11px;
+      font-weight: bold;
+      color: #e91e63;
+      background: #fce4ec;
+      border-radius: 8px;
+      padding: 3px 9px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+      line-height: 1.6;
+    }
+
+    .post-text {
+      font-size: 13.5px;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 1.75rem;
+      color: #e91e63;
+      text-decoration: none;
+      font-size: 13px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid #f48fb1;
+      padding: 6px 16px;
+      border-radius: 20px;
+      transition: background .15s;
+    }
+    .back-link:hover { background: #fce4ec; }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 12px;
+      color: #ad1457;
+      border-top: 1px solid #f8bbd0;
+      background: rgba(255,255,255,0.7);
     }
   </style>
 </head>
+<body>
 
-<script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
-    }
-</script>
+  <header>
+    <a class="logo" href="index.html">⭐ 作品レビューサイト</a>
+    <nav>
+      <ul>
+        <li><a href="ranking2026.html">2026年のランキング</a></li>
+        <li><a href="blog.html" class="active">ブログ</a></li>
+        <li><a href="otaku.html">ALL TIME BEST</a></li>
+      </ul>
+    </nav>
+  </header>
 
-</head>
-<body style="font-family: sans-serif; background-color: white; color: black;">
-  <h1>書評📝</h1>
+  <main>
 
-  <p>備忘録。書評なのでネタバレを含みます。ランキングは上下します。最終的な2026年のランキングは年末に決まります。</p>
+    <div class="page-header">
+      <h1>📝 書評ブログ</h1>
+      <p>備忘録。書評なのでネタバレを含みます。ランキングは上下します。最終的な2026年のランキングは年末に決まります。</p>
+    </div>
 
-  <h2>最新記事</h2>
-  <ul>
-    <li><strong>2026/05/09:</strong> ハンターハンターと北斗の拳読み始めた</li>
-    <li><strong>2026/05/08:</strong> 小説はだんだん好きなものが定まってきた感じする。純文学は好きな作家が決まってきて、あとSFとミステリー中心に読めばいいかなと。そろそろ小説のインプットは落ち着きたい</li>
-    <li><strong>2026/05/07:</strong> ディズニー映画もちょっとしんどい感じある。あんまり、面白くないかも………ほぼオリジナル作品じゃないのがハマれない要因かもしれない</li>
-    <li><strong>2026/05/06:</strong> マーベル映画があまりハマらない理由ってなんだろうなって分析してるんだけど、ネットで「日本の漫画みたいな作りしか読めない人たちがマーベルを批判してる」みたいな説見たんだけど、洋画も洋ドラマも大好きだから、日本の漫画の作りに慣れてるからとかじゃない気がするんだよな</li>
-    <li><strong>2026/05/04:</strong> ピクサーを順番に観てるんだけどマーベルと違ってぜんぜん苦じゃない。マーベルのコミックは割と好きなんだけどな</li>
-    <li><strong>2026/04/26:</strong> 最初のマクロスがマクロスセブンで、最初のガンダムがGガンダムなんだけど、「キテレツなの選びましたね」って言われしまった（笑）でも面白かったよ</li>
-    <li><strong>2026/04/22:</strong> トイストーリー３は本当に名作。アンディ…………ヤバい。泣いた</li>
-    <li><strong>2026/04/22:</strong> 図書館戦争は１巻でギブアップかもしれない。なんだろ。有川浩の小説ってなんでも順調にいきすぎて……嫌いではない。ただ、魂に響かない</li>
-    <li><strong>2026/04/21:</strong> マーベル作品ちょっとギブアップかもしれない。私には合わなかった。私はほんの少しでも"発見"とか"学び"がほしいと思っちゃう。マーベルってどちらかというとお祭りとかパーティが好きな人が面白いと思う作品だと思った。エンドゲームまで観たいって思ったけど、ドクター・ストレンジで終わりにしよう。マーベル作品が好きな人の話を聞くのは楽しいんだけどな</li>
-  </ul>
+    <div class="section-head">🗒️ 最新記事</div>
 
-  <p>
-    <a href="index.html">
-      <span style="color: #d4af37;">←トップページに戻る</span>
-    </a>
-  </p>
+    <div class="posts">
+
+      <div class="post">
+        <div class="post-date">2026/05/09</div>
+        <div class="post-text">ハンターハンターと北斗の拳読み始めた。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026/05/08</div>
+        <div class="post-text">小説はだんだん好きなものが定まってきた感じする。純文学は好きな作家が決まってきて、あとSFとミステリー中心に読めばいいかなと。そろそろ小説のインプットは落ち着きたい。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026/05/07</div>
+        <div class="post-text">ディズニー映画もちょっとしんどい感じある。あんまり面白くないかも………ほぼオリジナル作品じゃないのがハマれない要因かもしれない。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026/05/06</div>
+        <div class="post-text">マーベル映画があまりハマらない理由ってなんだろうなって分析してるんだけど、ネットで「日本の漫画みたいな作りしか読めない人たちがマーベルを批判してる」みたいな説見たんだけど、洋画も洋ドラマも大好きだから、日本の漫画の作りに慣れてるからとかじゃない気がするんだよな。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026/05/04</div>
+        <div class="post-text">ピクサーを順番に観てるんだけどマーベルと違ってぜんぜん苦じゃない。マーベルのコミックは割と好きなんだけどな。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026/04/26</div>
+        <div class="post-text">最初のマクロスがマクロスセブンで、最初のガンダムがGガンダムなんだけど、「キテレツなの選びましたね」って言われしまった（笑）でも面白かったよ。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026/04/22</div>
+        <div class="post-text">トイストーリー３は本当に名作。アンディ…………ヤバい。泣いた。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026/04/22</div>
+        <div class="post-text">図書館戦争は１巻でギブアップかもしれない。有川浩の小説ってなんでも順調にいきすぎて……嫌いではない。ただ、魂に響かない。</div>
+      </div>
+
+      <div class="post">
+        <div class="post-date">2026/04/21</div>
+        <div class="post-text">マーベル作品ちょっとギブアップかもしれない。私には合わなかった。私はほんの少しでも"発見"とか"学び"がほしいと思っちゃう。マーベルってどちらかというとお祭りとかパーティが好きな人が面白いと思う作品だと思った。ドクター・ストレンジで終わりにしよう。マーベル作品が好きな人の話を聞くのは楽しいんだけどな。</div>
+      </div>
+
+    </div>
+
+    <a class="back-link" href="index.html">← トップページに戻る</a>
+
+  </main>
+
+  <footer>
+    <p>© レビューサイト</p>
+  </footer>
+
 </body>
 </html>
