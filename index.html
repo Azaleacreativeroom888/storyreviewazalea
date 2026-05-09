@@ -1,75 +1,115 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>レビューサイト</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.page{min-height:600px;padding:0 0 2rem}
+.checker-bg{background-image:repeating-conic-gradient(#fff 0% 25%,#fce4ec 0% 50%);background-size:40px 40px;padding:0 0 2rem}
+header{background:rgba(255,255,255,0.88);backdrop-filter:blur(8px);border-bottom:1px solid #f48fb1;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;position:sticky;top:0;z-index:10}
+.logo{font-size:1.2rem;font-weight:500;color:#c2185b;display:flex;align-items:center;gap:8px}
+.logo i{font-size:20px}
+nav ul{list-style:none;display:flex;gap:.5rem;flex-wrap:wrap}
+nav a{font-size:13px;text-decoration:none;color:#ad1457;background:#fce4ec;border:1px solid #f48fb1;padding:5px 12px;border-radius:20px;transition:background .15s}
+nav a:hover{background:#f48fb1;color:#fff}
+main{max-width:680px;margin:0 auto;padding:1.5rem}
+.search-bar{display:flex;gap:8px;background:#fff;border-radius:16px;padding:10px 14px;box-shadow:0 2px 12px rgba(194,24,91,.12);margin-bottom:1.5rem;border:1px solid #f48fb1}
+.search-bar input{flex:1;border:none;outline:none;font-size:14px;background:transparent;color:var(--color-text-primary)}
+.search-bar button{background:#e91e63;color:#fff;border:none;border-radius:12px;padding:6px 16px;font-size:13px;cursor:pointer}
+.search-bar button:hover{background:#c2185b}
+section-title{display:block}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.08em;color:#c2185b;text-transform:uppercase;margin-bottom:.5rem}
+.section-head{font-size:1.1rem;font-weight:500;color:var(--color-text-primary);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.section-head i{color:#e91e63;font-size:18px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem}
+.card{background:rgba(255,255,255,0.92);border-radius:14px;border:1px solid #f48fb1;padding:1rem 1.1rem;transition:transform .15s}
+.card:hover{transform:translateY(-2px)}
+.card-genre{font-size:11px;color:#ad1457;background:#fce4ec;border-radius:8px;padding:2px 8px;display:inline-block;margin-bottom:.4rem}
+.card h3{font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:.4rem}
+.card p{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.stars{color:#e91e63;font-size:13px;margin-bottom:.3rem}
+.ranking-list{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
+.rank-item{background:rgba(255,255,255,0.9);border-radius:12px;border:1px solid #f8bbd0;padding:.9rem 1rem;display:flex;gap:12px;align-items:flex-start}
+.rank-num{min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0;margin-top:1px}
+.rank-1{background:#e91e63;color:#fff}
+.rank-2{background:#f48fb1;color:#fff}
+.rank-3{background:#fce4ec;color:#c2185b}
+.rank-other{background:#fce4ec;color:#ad1457}
+.rank-body{flex:1}
+.rank-title{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:.25rem}
+.rank-tag{font-size:11px;color:#ad1457;background:#fce4ec;padding:1px 7px;border-radius:6px;margin-left:6px;vertical-align:middle}
+.rank-text{font-size:12.5px;color:var(--color-text-secondary);line-height:1.65}
+footer{text-align:center;padding:1rem;font-size:12px;color:#ad1457;border-top:1px solid #f8bbd0;background:rgba(255,255,255,0.7)}
+</style>
+<div class="checker-bg page">
+<header>
+  <div class="logo"><i class="ti ti-star" aria-hidden="true"></i>作品レビューサイト</div>
+  <nav>
+    <ul>
+      <li><a href="#">2026年のランキング</a></li>
+      <li><a href="#">ブログ</a></li>
+      <li><a href="#">ALL TIME BEST</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <div class="search-bar">
+    <i class="ti ti-search" style="color:#f48fb1;font-size:18px;margin-top:1px" aria-hidden="true"></i>
+    <input type="text" placeholder="作品を検索する...">
+    <button>検索</button>
+  </div>
 
-<body>
+  <div class="section-head"><i class="ti ti-star-filled" aria-hidden="true"></i>★5レビュー</div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-genre">アニメ / 映画</div>
+      <div class="stars">★★★★★</div>
+      <h3>閃光のハサウェイ</h3>
+      <p>これ以上のアニメ映画はない。初代も気になって観たくなる。コンテンツとしては最高の形。</p>
+    </div>
+    <div class="card">
+      <div class="card-genre">SF / 小説</div>
+      <div class="stars">★★★★★</div>
+      <h3>新世界より</h3>
+      <p>上巻はゆっくり進むが中巻から一気に引き込まれる。</p>
+    </div>
+  </div>
 
-  <!-- ヘッダー -->
-  <header>
-    <h1>Azalea72の作品レビューサイト</h1>
-    <nav>
-      <ul>
-        <li><a href="ranking2026.html">2026年のランキング</a></li>
-        <li><a href="blog.html">ブログ</a></li>
-        <li><a href="otaku.html">ALL TIME BEST</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- メイン -->
-  <main>
-
-    <!-- 検索 -->
-    <section class="search">
-      <input type="text" placeholder="作品を検索">
-      <button>検索</button>
-    </section>
-
-    <!-- 人気レビュー -->
-    <section>
-      <h2>★５レビュー</h2>
-
-      <article class="review-card">
-        <h3>閃光のハサウェイ</h3>
-        <p>ジャンル：アニメ / 映画</p>
-        <p>評価：これ以上のアニメ映画はない。初代も気になって観たくなる。コンテンツとしては最高の形</p>
-      </article>
-
-      <article class="review-card">
-        <h3>新世界より</h3>
-        <p>ジャンル：SF / 小説</p>
-        <p>評価：上巻のストーリーはゆっくり進むが中巻から一気に引き込まれる</p>
-      </article>
-
-    </section>
-
-    <!-- 新着 -->
-    <section>
-      <h2>新着レビュー</h2>
-      <ul>
-        <li><strong>１位　十角館の殺人（小説）</strong> ミステリー小説にハマったきっかけの小説。面白すぎる</li>
-        <li><strong>２位　閃光のハサウェイ　キルケーの魔女（アニメ映画）</strong> すごかった。コンクリートの冷たい匂いがしたし、鉄の焼けた匂いもした。匂いと温度が伝わってきた。アニメでこんなに絵以外の情報が伝わってくるなんてすごい。でもAIを使ってるなって分かってしまったのは唯一の難点かなって。ただこの映画のすごいところはもう一つあって、それは最初のガンダムを観てみたくなるような、ファーストガンダムの宣伝にもなっているというところ</li>
-        <li><strong>３位　WALL-E（アニメ映画）</strong> ピクサーでナンバーワンの面白さ。主人公が言葉を発せずとも感情が分かるって、それだけでこの映画の表現力がすごいことが分かる</li>
-        <li><strong>４位　マーダーズ・イン・ビルディング　シーズン６（米国ドラマ）</strong> コメディミステリードラマ。クスッとなる脚本が最高</li>
-        <li><strong>５位　新世界より（小説）</strong> 上巻では物語がゆっくり進むんだけど、中巻から「この本買ってよかった！　最高！」ってなる。下巻になるとエンディングが気になって捲る手が止まらなくなる</li>
-      </ul>
-    </section>
-
-    <!-- FC2カウンター ここから -->
-    <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=89515883"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=89515883" /></noscript>
-    <!-- FC2カウンター ここまで -->
-    
-  </main>
-
-  <!-- フッター -->
-  <footer>
-    <p>© レビューサイト</p>
-  </footer>
-
-</body>
-</html>
+  <div class="section-head"><i class="ti ti-flame" aria-hidden="true"></i>新着レビュー</div>
+  <div class="ranking-list">
+    <div class="rank-item">
+      <div class="rank-num rank-1">1</div>
+      <div class="rank-body">
+        <div class="rank-title">十角館の殺人<span class="rank-tag">小説</span></div>
+        <div class="rank-text">ミステリー小説にハマったきっかけの小説。面白すぎる。</div>
+      </div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num rank-2">2</div>
+      <div class="rank-body">
+        <div class="rank-title">閃光のハサウェイ キルケーの魔女<span class="rank-tag">アニメ映画</span></div>
+        <div class="rank-text">コンクリートの冷たい匂い、鉄の焼けた匂い。映像だけで温度と匂いが伝わってくるのがすごい。ファーストガンダムへの興味も引き立てる、最高の宣伝にもなっている作品。</div>
+      </div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num rank-3">3</div>
+      <div class="rank-body">
+        <div class="rank-title">WALL-E<span class="rank-tag">アニメ映画</span></div>
+        <div class="rank-text">ピクサーでナンバーワン。言葉を発せずとも感情が伝わる表現力がすごい。</div>
+      </div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num rank-other">4</div>
+      <div class="rank-body">
+        <div class="rank-title">マーダーズ・イン・ビルディング S6<span class="rank-tag">米国ドラマ</span></div>
+        <div class="rank-text">コメディミステリードラマ。クスッとなる脚本が最高。</div>
+      </div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num rank-other">5</div>
+      <div class="rank-body">
+        <div class="rank-title">新世界より<span class="rank-tag">小説</span></div>
+        <div class="rank-text">中巻から「この本買ってよかった！」になる。下巻はページを捲る手が止まらない。</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>© レビューサイト</footer>
+</div>
