@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>リンク・お問い合わせ | 作品レビューサイト</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "メイリオ", "Hiragino Kaku Gothic ProN", sans-serif;
+      background-image: repeating-conic-gradient(#fff 0% 25%, #fce4ec 0% 50%);
+      background-size: 40px 40px;
+      background-attachment: fixed;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid #f48fb1;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .75rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: #c2185b;
+      text-decoration: none;
+    }
+
+    nav ul { list-style: none; display: flex; gap: .5rem; flex-wrap: wrap; }
+
+    nav a {
+      font-size: 13px;
+      text-decoration: none;
+      color: #ad1457;
+      background: #fce4ec;
+      border: 1px solid #f48fb1;
+      padding: 5px 14px;
+      border-radius: 20px;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    nav a:hover { background: #f48fb1; color: #fff; }
+    nav a.active { background: #e91e63; color: #fff; border-color: #e91e63; }
+
+    /* ===== MAIN ===== */
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3rem;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      background: rgba(255,255,255,0.9);
+      border-radius: 18px;
+      border: 1px solid #f48fb1;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .page-header h1 { font-size: 1.4rem; color: #c2185b; margin-bottom: .35rem; }
+    .page-header p { font-size: 13px; color: #777; line-height: 1.7; }
+
+    /* ===== SECTION HEADING ===== */
+    .section-head {
+      font-size: .85rem;
+      font-weight: bold;
+      color: #c2185b;
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-left: 2px;
+    }
+    .section-head::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, #f48fb1, transparent);
+    }
+
+    /* ===== LINK GRID ===== */
+    .link-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 480px) { .link-grid { grid-template-columns: 1fr; } }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid #f48fb1;
+      border-radius: 14px;
+      padding: 13px 14px;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .link-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(233,30,99,.1);
+    }
+
+    .link-icon {
+      font-size: 22px;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fce4ec;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .link-text { flex: 1; min-width: 0; }
+
+    .link-name {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      color: #c2185b;
+      margin-bottom: 2px;
+    }
+
+    .link-desc {
+      display: block;
+      font-size: 11px;
+      color: #999;
+      line-height: 1.5;
+    }
+
+    .link-arrow {
+      font-size: 16px;
+      color: #f48fb1;
+      flex-shrink: 0;
+      transition: transform .15s;
+    }
+    .link-card:hover .link-arrow { transform: translateX(3px); }
+
+    /* ===== FORM ===== */
+    .form-card {
+      background: rgba(255,255,255,0.92);
+      border-radius: 16px;
+      border: 1px solid #f48fb1;
+      padding: 1.4rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-intro {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.8;
+      margin-bottom: 1.1rem;
+    }
+
+    .form-group { margin-bottom: 14px; }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      color: #ad1457;
+      margin-bottom: 6px;
+      letter-spacing: .04em;
+    }
+
+    .required { color: #e91e63; margin-left: 3px; }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: #fff;
+      border: 1px solid #f48fb1;
+      border-radius: 10px;
+      color: #333;
+      font-family: "メイリオ", sans-serif;
+      font-size: 13.5px;
+      padding: 9px 13px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: #ccc; }
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: #e91e63;
+      box-shadow: 0 0 0 3px rgba(233,30,99,.08);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .field-error {
+      display: block;
+      font-size: 11px;
+      color: #e91e63;
+      margin-top: 4px;
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #e91e63;
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      font-family: "メイリオ", sans-serif;
+      font-size: 14px;
+      padding: 10px 26px;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background .15s;
+    }
+    .form-submit:hover { background: #c2185b; }
+    .form-submit:disabled { opacity: .5; cursor: not-allowed; }
+
+    .form-success {
+      background: #fce4ec;
+      border: 1px solid #f48fb1;
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: center;
+      color: #c2185b;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .form-error-global {
+      background: #fff0f3;
+      border: 1px solid #f48fb1;
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: #e91e63;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: .5rem;
+      color: #e91e63;
+      text-decoration: none;
+      font-size: 13px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid #f48fb1;
+      padding: 6px 16px;
+      border-radius: 20px;
+      transition: background .15s;
+    }
+    .back-link:hover { background: #fce4ec; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid #f8bbd0;
+      background: rgba(255,255,255,0.7);
+      padding: 1rem 1.5rem;
+      text-align: center;
+    }
+    footer p {
+      font-size: 11px;
+      color: #ad1457;
+      line-height: 1.9;
+      max-width: 620px;
+      margin: 0 auto 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="index.html">⭐ 作品レビューサイト</a>
+    <nav>
+      <ul>
+        <li><a href="ranking2026.html">2026年のランキング</a></li>
+        <li><a href="blog.html">ブログ</a></li>
+        <li><a href="otaku.html">ALL TIME BEST</a></li>
+        <li><a href="contact.html" class="active">リンク</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="page-header">
+      <h1>🔗 リンク・お問い合わせ</h1>
+      <p>ご連絡は各SNSまたは下のフォームからどうぞ。</p>
+    </div>
+
+    <!-- 漫画・イラスト -->
+    <div class="section-head">📚 漫画・イラスト掲載サイト</div>
+    <div class="link-grid">
+
+      <a class="link-card" href="https://rookie.shonenjump.com/users/14728546961183734555" target="_blank" rel="noopener">
+        <div class="link-icon">📚</div>
+        <div class="link-text">
+          <span class="link-name">ジャンプルーキー</span>
+          <span class="link-desc">オリジナル漫画を掲載中</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://daysneo.com/author/Sam333333Sam/" target="_blank" rel="noopener">
+        <div class="link-icon">🌙</div>
+        <div class="link-text">
+          <span class="link-name">DaysNEO</span>
+          <span class="link-desc">漫画掲載サイト</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://www.pixiv.net/users/105728284" target="_blank" rel="noopener">
+        <div class="link-icon">🎨</div>
+        <div class="link-text">
+          <span class="link-name">Pixiv</span>
+          <span class="link-desc">二次創作はこちらに掲載</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+    </div>
+
+    <!-- SNS -->
+    <div class="section-head">💬 SNS・その他</div>
+    <div class="link-grid">
+
+      <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
+        <div class="link-icon">🦋</div>
+        <div class="link-text">
+          <span class="link-name">Bluesky</span>
+          <span class="link-desc">近況・作品のお知らせ</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">
+        <div class="link-icon">✒️</div>
+        <div class="link-text">
+          <span class="link-name">カクヨム</span>
+          <span class="link-desc">小説を掲載中</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://www.youtube.com/@LilyPopins0512" target="_blank" rel="noopener">
+        <div class="link-icon">🎬</div>
+        <div class="link-text">
+          <span class="link-name">YouTube（リリポピ）</span>
+          <span class="link-desc">動画チャンネル</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://lilipopi.github.io/lilypopins/" target="_blank" rel="noopener">
+        <div class="link-icon">🌸</div>
+        <div class="link-text">
+          <span class="link-name">リリポピのHP</span>
+          <span class="link-desc">別サイト</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+    </div>
+
+    <!-- 関連サイト -->
+    <div class="section-head">🏠 関連ホームページ</div>
+    <div class="link-grid">
+
+      <a class="link-card" href="https://azaleacreativeroom888.github.io/storyreviewazalea/" target="_blank" rel="noopener">
+        <div class="link-icon">📖</div>
+        <div class="link-text">
+          <span class="link-name">書評サイト</span>
+          <span class="link-desc">本・アニメ・映画の備忘録</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://azaleacreativeroom888.github.io/fan-english/" target="_blank" rel="noopener">
+        <div class="link-icon">🍔</div>
+        <div class="link-text">
+          <span class="link-name">English Site</span>
+          <span class="link-desc">英語話者・学習者向けサイト</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://azaleacreativeroom888.github.io/fan-watercolor/" target="_blank" rel="noopener">
+        <div class="link-icon">☁️</div>
+        <div class="link-text">
+          <span class="link-name">水彩画サイト</span>
+          <span class="link-desc">水彩画掲載</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+    </div>
+
+    <!-- お問い合わせフォーム -->
+    <div class="section-head">📮 お問い合わせフォーム</div>
+
+    <div class="form-card">
+      <p class="form-intro">ご質問・ご感想などはこちらからどうぞ。<br>Gmailで受け取り、返信いたします。</p>
+
+      <div data-fs-success class="form-success" style="display:none;">
+        ✉️ メッセージを送信しました。ありがとうございます！
+      </div>
+
+      <div data-fs-error class="form-error-global" style="display:none;"></div>
+
+      <form id="contact-form" action="https://formspree.io/f/maqvpvoz" method="POST">
+
+        <div class="form-group">
+          <label class="form-label" for="name">お名前</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="Azalea72" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">メールアドレス<span class="required">*</span></label>
+          <input class="form-input" type="email" id="email" name="email" data-fs-field placeholder="example@email.com" required>
+          <span data-fs-error="email" class="field-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">メッセージ<span class="required">*</span></label>
+          <textarea class="form-textarea" id="message" name="message" data-fs-field placeholder="メッセージを入力してください…" rows="6" required></textarea>
+          <span data-fs-error="message" class="field-error"></span>
+        </div>
+
+        <button class="form-submit" type="submit" data-fs-submit-btn>
+          📮 送信する
+        </button>
+
+      </form>
+    </div>
+
+    <a class="back-link" href="index.html">← トップページに戻る</a>
+
+  </main>
+
+  <footer>
+    <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。スクリーンショットの転載・無断引用はご遠慮ください。</p>
+    <p>Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.</p>
+    <p style="margin-top:8px;">© レビューサイト</p>
+  </footer>
+
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#contact-form', formId: 'maqvpvoz' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
