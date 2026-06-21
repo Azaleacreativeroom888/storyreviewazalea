@@ -4,121 +4,320 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="0c3XVY1lM5VqZHuWOtfF5lbEjrFSJyUmFg2IcGc7eSo" />
-  <title>作品レビューサイト</title>
-  
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-sans)}
-.page{min-height:600px;padding:0 0 2rem}
-.checker-bg{background-image:repeating-conic-gradient(#fff 0% 25%,#fce4ec 0% 50%);background-size:40px 40px;padding:0 0 2rem}
-header{background:rgba(255,255,255,0.88);backdrop-filter:blur(8px);border-bottom:1px solid #f48fb1;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;position:sticky;top:0;z-index:10}
-.logo{font-size:1.2rem;font-weight:500;color:#c2185b;display:flex;align-items:center;gap:8px}
-.logo i{font-size:20px}
-nav ul{list-style:none;display:flex;gap:.5rem;flex-wrap:wrap}
-nav a{font-size:13px;text-decoration:none;color:#ad1457;background:#fce4ec;border:1px solid #f48fb1;padding:5px 12px;border-radius:20px;transition:background .15s}
-nav a:hover{background:#f48fb1;color:#fff}
-main{max-width:680px;margin:0 auto;padding:1.5rem}
-.search-bar{display:flex;gap:8px;background:#fff;border-radius:16px;padding:10px 14px;box-shadow:0 2px 12px rgba(194,24,91,.12);margin-bottom:1.5rem;border:1px solid #f48fb1}
-.search-bar input{flex:1;border:none;outline:none;font-size:14px;background:transparent;color:var(--color-text-primary)}
-.search-bar button{background:#e91e63;color:#fff;border:none;border-radius:12px;padding:6px 16px;font-size:13px;cursor:pointer}
-.search-bar button:hover{background:#c2185b}
-section-title{display:block}
-.section-label{font-size:11px;font-weight:500;letter-spacing:.08em;color:#c2185b;text-transform:uppercase;margin-bottom:.5rem}
-.section-head{font-size:1.1rem;font-weight:500;color:var(--color-text-primary);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
-.section-head i{color:#e91e63;font-size:18px}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem}
-.card{background:rgba(255,255,255,0.92);border-radius:14px;border:1px solid #f48fb1;padding:1rem 1.1rem;transition:transform .15s}
-.card:hover{transform:translateY(-2px)}
-.card-genre{font-size:11px;color:#ad1457;background:#fce4ec;border-radius:8px;padding:2px 8px;display:inline-block;margin-bottom:.4rem}
-.card h3{font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:.4rem}
-.card p{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
-.stars{color:#e91e63;font-size:13px;margin-bottom:.3rem}
-.ranking-list{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
-.rank-item{background:rgba(255,255,255,0.9);border-radius:12px;border:1px solid #f8bbd0;padding:.9rem 1rem;display:flex;gap:12px;align-items:flex-start}
-.rank-num{min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0;margin-top:1px}
-.rank-1{background:#e91e63;color:#fff}
-.rank-2{background:#f48fb1;color:#fff}
-.rank-3{background:#fce4ec;color:#c2185b}
-.rank-other{background:#fce4ec;color:#ad1457}
-.rank-body{flex:1}
-.rank-title{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:.25rem}
-.rank-tag{font-size:11px;color:#ad1457;background:#fce4ec;padding:1px 7px;border-radius:6px;margin-left:6px;vertical-align:middle}
-.rank-text{font-size:12.5px;color:var(--color-text-secondary);line-height:1.65}
-footer{text-align:center;padding:1rem;font-size:12px;color:#ad1457;border-top:1px solid #f8bbd0;background:rgba(255,255,255,0.7)}
-</style>
-<div class="checker-bg page">
+  <title>書評・作品レビューサイト｜映画・アニメ・小説・漫画の感想ブログ</title>
+  <meta name="description" content="映画・アニメ・小説・漫画・ドラマなど、観た作品・読んだ作品の書評やレビューをまとめた個人ブログ。年間ランキング形式で感想を紹介しています。">
+  <meta name="keywords" content="書評, レビュー, 作品レビュー, 映画レビュー, アニメ感想, 小説レビュー, 漫画レビュー, おすすめ作品, ランキング">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://azaleacreativeroom888.github.io/storyreviewazalea/index.html">
+
+  <!-- OGP / SNSシェア用 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="書評・作品レビューサイト｜映画・アニメ・小説・漫画の感想ブログ">
+  <meta property="og:description" content="映画・アニメ・小説・漫画・ドラマなど、観た作品・読んだ作品の書評やレビューをまとめた個人ブログ。年間ランキング形式で感想を紹介しています。">
+  <meta property="og:url" content="https://azaleacreativeroom888.github.io/storyreviewazalea/index.html">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="書評・作品レビューサイト">
+  <meta name="twitter:description" content="映画・アニメ・小説・漫画の書評とレビューをまとめた個人ブログ。">
+
+  <!-- 構造化データ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "書評・作品レビューサイト",
+    "description": "映画・アニメ・小説・漫画・ドラマの書評やレビューをまとめた個人ブログ。",
+    "inLanguage": "ja",
+    "url": "https://azaleacreativeroom888.github.io/storyreviewazalea/index.html"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Noto Serif JP','メイリオ',sans-serif;
+      color:#3a2a30;
+    }
+    .checker-bg{
+      background-image:repeating-conic-gradient(#fff 0% 25%,#fce4ec 0% 50%);
+      background-size:40px 40px;
+      min-height:100vh;
+      padding:0 0 2rem;
+    }
+
+    /* ===== HEADER ===== */
+    header{
+      background:rgba(255,255,255,0.88);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      border-bottom:1px solid #f48fb1;
+      padding:1rem 1.5rem;
+      display:flex;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;gap:.75rem;
+      position:sticky;top:0;z-index:10;
+    }
+    .logo{
+      font-family:'Poppins',sans-serif;
+      font-size:1.15rem;font-weight:600;color:#c2185b;
+      text-decoration:none;display:flex;align-items:center;gap:6px;
+      letter-spacing:.02em;
+    }
+    nav ul{list-style:none;display:flex;gap:.5rem;flex-wrap:wrap}
+    nav a{
+      font-size:13px;text-decoration:none;color:#ad1457;background:#fce4ec;
+      border:1px solid #f48fb1;padding:5px 14px;border-radius:20px;
+      transition:background .15s,color .15s;
+    }
+    nav a:hover{background:#f48fb1;color:#fff}
+
+    main{max-width:720px;margin:0 auto;padding:2rem 1.25rem 1rem}
+
+    /* ===== HERO ===== */
+    .hero{
+      text-align:center;
+      padding:1rem 1rem 2.25rem;
+      position:relative;
+    }
+    .hero-ornament{
+      font-size:11px;letter-spacing:.3em;color:#f48fb1;
+      text-transform:uppercase;margin-bottom:.6rem;
+      font-family:'Poppins',sans-serif;
+    }
+    .hero h1{
+      font-size:1.85rem;font-weight:600;color:#ad1457;
+      margin-bottom:.6rem;letter-spacing:.02em;
+      text-shadow:0 1px 0 rgba(255,255,255,.6);
+    }
+    .hero p{
+      font-size:13.5px;color:#9b6b7a;line-height:1.85;
+      max-width:480px;margin:0 auto;
+    }
+    .hero-divider{
+      width:70px;height:2px;margin:1.3rem auto 0;
+      background:linear-gradient(90deg,transparent,#e91e63,transparent);
+    }
+
+    /* ===== EXPLORE CARDS ===== */
+    .section-label{
+      font-family:'Poppins',sans-serif;
+      font-size:11px;font-weight:600;letter-spacing:.12em;color:#c2185b;
+      text-transform:uppercase;margin-bottom:.9rem;
+      display:flex;align-items:center;gap:10px;
+    }
+    .section-label::after{
+      content:'';flex:1;height:1px;
+      background:linear-gradient(90deg,#f48fb1,transparent);
+    }
+
+    .explore-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:14px;
+      margin-bottom:2.5rem;
+    }
+    @media (max-width:480px){.explore-grid{grid-template-columns:1fr}}
+
+    .explore-card{
+      position:relative;
+      display:block;text-decoration:none;
+      background:rgba(255,255,255,0.92);
+      border:1px solid #f48fb1;
+      border-radius:18px;
+      padding:1.3rem 1.2rem 1.2rem;
+      overflow:hidden;
+      transition:transform .18s, box-shadow .18s;
+    }
+    .explore-card::before{
+      content:'';
+      position:absolute;top:0;left:0;right:0;height:3px;
+      background:linear-gradient(90deg,#e91e63,#f48fb1);
+    }
+    .explore-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 24px rgba(233,30,99,.14);
+    }
+    .explore-icon{
+      width:42px;height:42px;border-radius:12px;
+      background:#fce4ec;
+      display:flex;align-items:center;justify-content:center;
+      font-size:20px;margin-bottom:.8rem;
+    }
+    .explore-card h3{
+      font-size:15px;font-weight:600;color:#3a2a30;margin-bottom:.4rem;
+    }
+    .explore-card p{
+      font-size:12px;color:#9b8088;line-height:1.65;
+    }
+    .explore-arrow{
+      position:absolute;bottom:1.1rem;right:1.2rem;
+      font-size:15px;color:#f48fb1;
+      transition:transform .18s,color .18s;
+    }
+    .explore-card:hover .explore-arrow{transform:translateX(3px);color:#e91e63}
+
+    /* ===== RANKING ===== */
+    .section-head{
+      font-size:1.05rem;font-weight:600;color:#3a2a30;margin-bottom:1rem;
+      display:flex;align-items:center;gap:8px;
+    }
+    .section-head .emoji{font-size:18px}
+
+    .ranking-list{display:flex;flex-direction:column;gap:10px;margin-bottom:.5rem}
+    .rank-item{
+      background:rgba(255,255,255,0.9);border-radius:14px;border:1px solid #f8bbd0;
+      padding:.95rem 1.1rem;display:flex;gap:12px;align-items:flex-start;
+      transition:transform .15s;
+    }
+    .rank-item:hover{transform:translateY(-2px)}
+    .rank-num{
+      min-width:30px;height:30px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Poppins',sans-serif;
+      font-size:13px;font-weight:600;flex-shrink:0;margin-top:1px;
+    }
+    .rank-1{background:#e91e63;color:#fff}
+    .rank-2{background:#f06292;color:#fff}
+    .rank-3{background:#f48fb1;color:#fff}
+    .rank-other{background:#fce4ec;color:#ad1457}
+    .rank-body{flex:1}
+    .rank-title{font-size:14px;font-weight:600;color:#3a2a30;margin-bottom:.3rem}
+    .rank-tag{
+      font-size:10.5px;color:#ad1457;background:#fce4ec;
+      padding:1px 8px;border-radius:6px;margin-left:6px;vertical-align:middle;
+      font-weight:400;
+    }
+    .rank-text{font-size:12.5px;color:#7a6068;line-height:1.7}
+
+    .see-more{
+      display:block;text-align:center;margin-top:1.2rem;
+      font-size:13px;color:#e91e63;text-decoration:none;
+      background:rgba(255,255,255,0.85);border:1px solid #f48fb1;
+      padding:.6rem;border-radius:20px;transition:background .15s;
+    }
+    .see-more:hover{background:#fce4ec}
+
+    footer{
+      text-align:center;padding:1.2rem;font-size:12px;color:#ad1457;
+      border-top:1px solid #f8bbd0;background:rgba(255,255,255,0.7);
+    }
+  </style>
+</head>
+<body>
+<div class="checker-bg">
+
   <header>
     <a class="logo" href="index.html">⭐ 作品レビューサイト</a>
     <nav>
       <ul>
         <li><a href="ranking2026.html">ランキング</a></li>
         <li><a href="blog.html">ブログ</a></li>
-        <li><a href="otaku.html" class="active">ALL TIME BEST</a></li>
-        <li><a href="contact.html" class="active">リンク</a></li>
+        <li><a href="otaku.html">ALL TIME BEST</a></li>
+        <li><a href="contact.html">リンク</a></li>
       </ul>
     </nav>
   </header>
-<main>
 
-  <div class="section-head"><i class="ti ti-star-filled" aria-hidden="true"></i>★5レビュー</div>
-  <div class="cards">
-    <div class="card">
-      <div class="card-genre">アニメ / 映画</div>
-      <div class="stars">★★★★★</div>
-      <h3>閃光のハサウェイ</h3>
-      <p>これ以上のアニメ映画はない。初代も気になって観たくなる。コンテンツとしては最高の形。</p>
-    </div>
-    <div class="card">
-      <div class="card-genre">SF / 小説</div>
-      <div class="stars">★★★★★</div>
-      <h3>新世界より</h3>
-      <p>上巻はゆっくり進むが中巻から一気に引き込まれる。</p>
-    </div>
-  </div>
+  <main>
 
-  <div class="section-head"><i class="ti ti-flame" aria-hidden="true"></i>新着レビュー</div>
-  <div class="ranking-list">
-    <div class="rank-item">
-      <div class="rank-num rank-1">1</div>
-      <div class="rank-body">
-        <div class="rank-title">十角館の殺人<span class="rank-tag">小説</span></div>
-        <div class="rank-text">ミステリー小説にハマったきっかけの小説。面白すぎる。</div>
-      </div>
+    <!-- ===== HERO ===== -->
+    <div class="hero">
+      <div class="hero-ornament">est. 2026</div>
+      <h1>📝 書評・作品レビューサイト</h1>
+      <p>映画・アニメ・小説・漫画・ドラマなど、出会った作品の書評やレビューを綴る個人的な備忘録です。ネタバレを含みますので、ご了承の上お楽しみください。</p>
+      <div class="hero-divider"></div>
     </div>
-    <div class="rank-item">
-      <div class="rank-num rank-2">2</div>
-      <div class="rank-body">
-        <div class="rank-title">閃光のハサウェイ キルケーの魔女<span class="rank-tag">アニメ映画</span></div>
-        <div class="rank-text">コンクリートの冷たい匂い、鉄の焼けた匂い。映像だけで温度と匂いが伝わってくるのがすごい。ファーストガンダムへの興味も引き立てる、最高の宣伝にもなっている作品。</div>
-      </div>
-    </div>
-    <div class="rank-item">
-      <div class="rank-num rank-3">3</div>
-      <div class="rank-body">
-        <div class="rank-title">WALL-E<span class="rank-tag">アニメ映画</span></div>
-        <div class="rank-text">ピクサーでナンバーワン。言葉を発せずとも感情が伝わる表現力がすごい。</div>
-      </div>
-    </div>
-    <div class="rank-item">
-      <div class="rank-num rank-other">4</div>
-      <div class="rank-body">
-        <div class="rank-title">マーダーズ・イン・ビルディング S6<span class="rank-tag">米国ドラマ</span></div>
-        <div class="rank-text">コメディミステリードラマ。クスッとなる脚本が最高。</div>
-      </div>
-    </div>
-    <div class="rank-item">
-      <div class="rank-num rank-other">5</div>
-      <div class="rank-body">
-        <div class="rank-title">新世界より<span class="rank-tag">小説</span></div>
-        <div class="rank-text">中巻から「この本買ってよかった！」になる。下巻はページを捲る手が止まらない。</div>
-      </div>
-    </div>
-  </div>
 
-  <!-- FC2カウンター ここから -->
-<script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=89515883"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=89515883" /></noscript>
-<!-- FC2カウンター ここまで -->
-  
-</main>
-<footer>© レビューサイト</footer>
+    <!-- ===== EXPLORE ===== -->
+    <p class="section-label">Explore</p>
+    <div class="explore-grid">
+
+      <a class="explore-card" href="ranking2026.html">
+        <div class="explore-icon">🏆</div>
+        <h3>2026年のランキング</h3>
+        <p>今年観た・読んだ作品をランキング形式で記録。年末に最終順位が決まります。</p>
+        <span class="explore-arrow">›</span>
+      </a>
+
+      <a class="explore-card" href="blog.html">
+        <div class="explore-icon">🗒️</div>
+        <h3>ブログ</h3>
+        <p>日々のちょっとした感想や気づきを綴る日記スタイルのコーナー。</p>
+        <span class="explore-arrow">›</span>
+      </a>
+
+      <a class="explore-card" href="otaku.html">
+        <div class="explore-icon">🎮</div>
+        <h3>ALL TIME BEST</h3>
+        <p>漫画・アニメ・映画・音楽など、これまで出会った大好きな作品たちの殿堂。</p>
+        <span class="explore-arrow">›</span>
+      </a>
+
+      <a class="explore-card" href="contact.html">
+        <div class="explore-icon">🔗</div>
+        <h3>リンク</h3>
+        <p>各種SNS・掲載サイトのリンクと、お問い合わせフォームはこちら。</p>
+        <span class="explore-arrow">›</span>
+      </a>
+
+    </div>
+
+    <!-- ===== TOP5 RANKING ===== -->
+    <div class="section-head"><span class="emoji">🔥</span>最新トップ5</div>
+    <div class="ranking-list">
+
+      <div class="rank-item">
+        <div class="rank-num rank-1">1</div>
+        <div class="rank-body">
+          <div class="rank-title">十角館の殺人<span class="rank-tag">小説</span></div>
+          <div class="rank-text">ミステリー小説にハマったきっかけの小説。面白すぎる。</div>
+        </div>
+      </div>
+
+      <div class="rank-item">
+        <div class="rank-num rank-2">2</div>
+        <div class="rank-body">
+          <div class="rank-title">閃光のハサウェイ キルケーの魔女<span class="rank-tag">アニメ映画</span></div>
+          <div class="rank-text">コンクリートの冷たい匂い、鉄の焼けた匂い。映像だけで温度と匂いが伝わってくるのがすごい。ファーストガンダムへの興味も引き立てる、最高の宣伝にもなっている作品。</div>
+        </div>
+      </div>
+
+      <div class="rank-item">
+        <div class="rank-num rank-3">3</div>
+        <div class="rank-body">
+          <div class="rank-title">WALL-E<span class="rank-tag">アニメ映画</span></div>
+          <div class="rank-text">ピクサーでナンバーワン。言葉を発せずとも感情が伝わる表現力がすごい。</div>
+        </div>
+      </div>
+
+      <div class="rank-item">
+        <div class="rank-num rank-other">4</div>
+        <div class="rank-body">
+          <div class="rank-title">マーダーズ・イン・ビルディング S6<span class="rank-tag">米国ドラマ</span></div>
+          <div class="rank-text">コメディミステリードラマ。クスッとなる脚本が最高。</div>
+        </div>
+      </div>
+
+      <div class="rank-item">
+        <div class="rank-num rank-other">5</div>
+        <div class="rank-body">
+          <div class="rank-title">新世界より<span class="rank-tag">小説</span></div>
+          <div class="rank-text">中巻から「この本買ってよかった！」になる。下巻はページを捲る手が止まらない。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <a class="see-more" href="ranking2026.html">ランキング全体を見る →</a>
+
+    <!-- FC2カウンター ここから -->
+    <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=89515883"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=89515883" /></noscript>
+    <!-- FC2カウンター ここまで -->
+
+  </main>
+
+  <footer>© レビューサイト</footer>
+
 </div>
+</body>
+</html>
