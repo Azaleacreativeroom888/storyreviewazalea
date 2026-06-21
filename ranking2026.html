@@ -216,6 +216,24 @@
       color: #ccc;
     }
 
+    /* ===== OMISSION NOTE ===== */
+    .omission-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(252,228,236,0.7);
+      border: 1px dashed #f48fb1;
+      border-radius: 12px;
+      padding: .75rem 1.1rem;
+      margin: .25rem 0 .5rem;
+      font-size: 12.5px;
+      color: #ad1457;
+    }
+    .omission-note::before {
+      content: '✂️';
+      font-size: 14px;
+    }
+
     /* ===== BACK LINK ===== */
     .back-link {
       display: inline-flex;
@@ -254,7 +272,7 @@
         <li><a href="ranking2026.html" class="active">ランキング</a></li>
         <li><a href="blog.html">ブログ</a></li>
         <li><a href="otaku.html">ALL TIME BEST</a></li>
-        <li><a href="contact.html" class="active">リンク</a></li>
+        <li><a href="contact.html">リンク</a></li>
       </ul>
     </nav>
   </header>
@@ -267,7 +285,7 @@
     </div>
 
     <!-- TOP 5 -->
-    <div class="section-head">🏆 最新トップ10</div>
+    <div class="section-head">🏆 最新トップ5</div>
     <div class="top5">
 
       <div class="top-card">
@@ -340,7 +358,7 @@
         <div class="review-item-title">ボツ 『少年ジャンプ』伝説の編集長の"嫌われる"仕事術 <span class="genre-tag">ビジネス本</span></div>
         <div class="review-item-text">これを出版できるのがすごい。ずっと毒舌。</div>
       </div>
-      
+
       <div class="review-item">
         <div class="review-item-title">アーロと少年 <span class="genre-tag">アニメ映画</span></div>
         <div class="review-item-text">最後にセリフなしの演出でちょっと泣いた。ピクサー最強すぎる。</div>
@@ -370,12 +388,12 @@
         <div class="review-item-title">名探偵コナン 100万ドルの五稜星 <span class="genre-tag">アニメ映画</span></div>
         <div class="review-item-text">私が北海道大好きだってのもあるけど、面白かった。「ここ分かる！」ってところがちょくちょくあった。ちょっと残念なのは北海道グルメも出してほしかったな。</div>
       </div>
-      
+
       <div class="review-item">
         <div class="review-item-title">リメンバー・ミー <span class="genre-tag">アニメ映画</span></div>
         <div class="review-item-text">メキシコの土着信仰を上手くファンタジーにしてて面白かった。</div>
       </div>
-      
+
       <div class="review-item">
         <div class="review-item-title">トイストーリー３ <span class="genre-tag">アニメ映画</span></div>
         <div class="review-item-text">まじで面白い。ちょっと闇な部分があって、バズライトイヤーが活躍してて良かった。</div>
@@ -403,7 +421,7 @@
 
       <div class="review-item">
         <div class="review-item-title">マイ・エレメント <span class="genre-tag">アニメ映画</span></div>
-        <div class="review-item-text">すごく可愛い映画だった。火と水っていう相反する二人が恋に落ちるんだけど、もう、可愛くて…… </div>
+        <div class="review-item-text">すごく可愛い映画だった。火と水っていう相反する二人が恋に落ちるんだけど、もう、可愛くて……</div>
       </div>
 
       <div class="review-item">
@@ -428,12 +446,12 @@
 
       <div class="review-item">
         <div class="review-item-title">マイケル <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">期待してなかったけど、観たら面白かった。マイケルジャクソンの音楽がたくさん出てきて楽しかったし。 </div>
+        <div class="review-item-text">期待してなかったけど、観たら面白かった。マイケルジャクソンの音楽がたくさん出てきて楽しかったし。</div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">獣兵衛忍風帖 <span class="genre-tag">アニメ映画</span></div>
-        <div class="review-item-text">この作品に早く出会いたかった。すべての平成初期の日本ファンタジーはここが原点なんだなって思った。音楽とか見せ方とか既視感がある。 </div>
+        <div class="review-item-text">この作品に早く出会いたかった。すべての平成初期の日本ファンタジーはここが原点なんだなって思った。音楽とか見せ方とか既視感がある。</div>
       </div>
 
       <div class="review-item">
@@ -572,7 +590,7 @@
       </div>
 
       <div class="review-item">
-        <div class="review-item-title">MEG　ザ・モンスター<span class="genre-tag">映画</span></div>
+        <div class="review-item-title">MEG　ザ・モンスター <span class="genre-tag">映画</span></div>
         <div class="review-item-text">面白かった。すべて怪力でごり押しするし、深海をボンベなしで泳ぐの面白い。筋肉だ。筋肉がすべてを解決する。</div>
       </div>
 
@@ -588,7 +606,7 @@
 
       <div class="review-item">
         <div class="review-item-title">トイストーリー４ <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">面白かったんだけど、ほんの少し説教臭い。ストーリーでいろいろ納得いかない部分がある </div>
+        <div class="review-item-text">面白かったんだけど、ほんの少し説教臭い。ストーリーでいろいろ納得いかない部分がある</div>
       </div>
 
       <div class="review-item">
@@ -662,11 +680,6 @@
       </div>
 
       <div class="review-item">
-        <div class="review-item-title">私ときどきレッサーパンダ <span class="genre-tag">アニメ映画</span></div>
-        <div class="review-item-text">「たまごっちって中国じゃなくて日本の文化じゃないか？」って気になって集中できなかった。それに学校でお金稼ぐのも良くないと思うし……面白い部分もあったせいかガッカリもデカい。</div>
-      </div>
-
-      <div class="review-item">
         <div class="review-item-title">アントマン <span class="genre-tag">映画</span></div>
         <div class="review-item-text">マーベル映画の中では今のところ一番面白い。主人公に欠点と向上心があるのが良い。</div>
       </div>
@@ -688,12 +701,7 @@
 
       <div class="review-item">
         <div class="review-item-title">バンビ <span class="genre-tag">アニメ映画</span></div>
-        <div class="review-item-text">バンビがひたすら可愛い。 </div>
-      </div>
-
-      <div class="review-item">
-        <div class="review-item-title">転生したらスライムだった件<span class="genre-tag">ラノベ</span></div>
-        <div class="review-item-text">コミカルでいい。なるほど都市開発ものでもあるのか。面白かったけど、なろう系はメタ的なものが多くなるとちょっと苦手かもしれない</div>
+        <div class="review-item-text">バンビがひたすら可愛い。</div>
       </div>
 
       <div class="review-item">
@@ -701,159 +709,171 @@
         <div class="review-item-text">興味深かった。ちゃんと予習して観に行って「ストーリーが分かるぞ！」ってなったんだけど、徳兵衛の日本語が難しくて……。でも演技はとにかく上手かった。歌舞伎俳優は演技上手いよ。</div>
       </div>
 
+      <div class="omission-note">以下、感想は割愛させていただきます</div>
+
+      <div class="review-item">
+        <div class="review-item-title">転生したらスライムだった件 <span class="genre-tag">ラノベ</span></div>
+        <div class="review-item-text"></div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-item-title">私ときどきレッサーパンダ <span class="genre-tag">アニメ映画</span></div>
+        <div class="review-item-text"></div>
+      </div>
+
       <div class="review-item">
         <div class="review-item-title">阪急電車 <span class="genre-tag">小説</span></div>
-        <div class="review-item-text">めちゃくちゃ文章が読みやすい。でも好みのストーリーではない。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">怪人二十面相 <span class="genre-tag">小説</span></div>
-        <div class="review-item-text">面白いんだけど昔の文体でストーリーが入ってきにくい。名探偵コナンがここからインスパイアを受けたんだなって思った。もう一回読みたい。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">ピノキオ <span class="genre-tag">アニメ映画</span></div>
-        <div class="review-item-text">面白かったけど、あんまり記憶に残らないかもしれない。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">そして誰もいなくなった <span class="genre-tag">小説（日本語）</span></div>
-        <div class="review-item-text">横文字の登場人物は覚えるのが辛い。でも、最後が面白かった。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">シンデレラ <span class="genre-tag">アニメ映画</span></div>
-        <div class="review-item-text">このクオリティーのアニメが当時放映されていたのはすごいと思う。そりゃシンデレラは、努力もできて家事もできて精神面でも強い性格の良い美人なんだから金持ちと結婚できるよな……</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">ドクターストレンジ <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">マーベル映画の中では断トツで面白い。アントマンの次に面白い。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">星を継ぐ者 <span class="genre-tag">小説（日本語）</span></div>
-        <div class="review-item-text">翻訳が苦手かも。英語で読み返したい。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">GQuuuuuuX <span class="genre-tag">アニメ</span></div>
-        <div class="review-item-text">キャラデザはイラストレーターの竹さんだし、絵は言わずもがな、とても良い。ただ、ガンダムで転生ものは見たくなかった。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">キャプテンアメリカ　ザ・ファーストアベンジャー <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">MCUフェーズ１の中で一番好き。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">スパイダーマン２ <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">１よりも個人的に好きかもしれない。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">図書館戦争 <span class="genre-tag">小説</span></div>
-        <div class="review-item-text">題材が面白いし興味深いけど、好みではない。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">ガーディアンズ・オブ・ギャラクシー <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">めっちゃバカ映画（笑）楽しい映画ではある。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">スパイダーマン <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">分かりやすい勧善懲悪だったからちょっと物足りなかった。てか、ジェームズ・フランコ若っ。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">インクレディブルハルク <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">ちょっとダークヒーロー感ある。単純なヒーロー映画で分かりやすい。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">とんがり帽子のアトリエ <span class="genre-tag">漫画</span></div>
-        <div class="review-item-text">とにかく絵がすばらしい。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">告白 <span class="genre-tag">小説</span></div>
-        <div class="review-item-text">面白いけど、作者の育ちの良さが出てしまってて何かが物足りない。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">アイアンマン２ <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">スパイダーマンと一緒で１よりも好きかもしれない。主人公の葛藤が丁寧に描かれてる。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">アベンジャーズ　エイジ・オブ・ウルトロン <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">面白かったけど、他人にオススメするほどではないかも。ブラックウィドウの恋愛パートはよく分からなかった。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">ブルーピリオド <span class="genre-tag">漫画</span></div>
-        <div class="review-item-text">美大をテーマにしてるのは面白いけど、登場人物が全く好きになれない。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">ラーゲリより愛を込めて <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">ギブアップ。エンタメとは何なのかを考えるきっかけになった</div>
+        <div class="review-item-text"></div>
       </div>
-      
+
       <div class="review-item">
         <div class="review-item-title">キャプテンアメリカ　ウィンターソルジャー <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">面白いけど、最後は絶対に主人公が助かるって分かってるといまいちハマることができない。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">ガーディアンオブギャラクシー　リミックス <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">つら……20分ごとに止めて、別の映画一本観て、20分観て、別の映画一本観てって繰り返してた。吹き替えのほうが面白い</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">SANDA <span class="genre-tag">アニメ</span></div>
-        <div class="review-item-text">制作会社がサイエンスSARUだから観た。演出と音楽は良い。ただ登場人物の行動が奇妙。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">アベンジャーズ <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">なるほど！今までのが全部繋がってるんだ！と思った。マーク・ラファロはハルクに適役だな。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">アイアンマン３ <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">３はハラハラするけど２よりは面白くないかも。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">ある男 <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">んーーーーーーーーーーーーー、うん！</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">アイアンマン <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">マーベルなら最初にこれ観ろっておすすめされる映画なだけあって、分かりやすい。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">マイティ・ソー <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">北欧神話好きだから、登場人物に「おっ」ってなった。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">マイティ・ソー　ダーク・ワールド <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">最初のマイティ・ソーのほうが面白かった気がする。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">宝島 <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">佐藤直紀の音楽は良かった。</div>
+        <div class="review-item-text"></div>
       </div>
 
       <div class="review-item">
         <div class="review-item-title">シビルウォー／キャプテンアメリカ <span class="genre-tag">映画</span></div>
-        <div class="review-item-text">５分が長い。これを面白いと思う時期が今じゃなかった。</div>
+        <div class="review-item-text"></div>
       </div>
 
     </div>
