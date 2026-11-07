@@ -268,7 +268,7 @@
     }
 
     /* ===== REVIEW COUNT ===== */
-.review-list { counter-reset: review; }
+.review-list { counter-reset: review 10; }
 .review-list .review-item { counter-increment: review; }
 .review-list .review-item-title::before {
   content: counter(review);
