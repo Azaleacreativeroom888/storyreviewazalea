@@ -298,13 +298,16 @@
     /* ===== CATEGORY COUNT BOX ===== */
 .count-box {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
   gap: 8px;
   background: rgba(255,255,255,0.9);
   border: 1px solid #f48fb1;
   border-radius: 16px;
   padding: .9rem;
   margin-bottom: 1.5rem;
+}
+  @media (max-width: 520px) {
+  .count-box { grid-template-columns: repeat(3, 1fr); }
 }
 .count-item {
   background: #fce4ec;
@@ -353,6 +356,7 @@
   <div class="count-item"><span class="count-num" id="cnt-drama">0</span><span class="count-label">📺 ドラマ</span></div>
   <div class="count-item"><span class="count-num" id="cnt-movie">0</span><span class="count-label">🎬 映画</span></div>
   <div class="count-item"><span class="count-num" id="cnt-anime">0</span><span class="count-label">✨ アニメ</span></div>
+  <div class="count-item"><span class="count-num" id="cnt-manga">0</span><span class="count-label">📖 漫画</span></div>
   <div class="count-item"><span class="count-num" id="cnt-other">0</span><span class="count-label">🎲 その他</span></div>
 </div>
 
@@ -1255,10 +1259,11 @@
       '全' + list + '件（トップ' + top + 'と合わせて' + (list + top) + '件）';
 
     // ジャンル別カウント（トップ10＋一覧すべて）
-    var counts = { novel: 0, drama: 0, movie: 0, anime: 0, other: 0 };
+    var counts = { novel: 0, manga: 0, drama: 0, movie: 0, anime: 0, other: 0 };
     document.querySelectorAll('.top5 .genre-tag, .review-list .genre-tag').forEach(function (tag) {
       var s = tag.textContent;
       if (s.indexOf('アニメ') !== -1) counts.anime++;
+      else if (s.indexOf('漫画') !== -1) counts.manga++;
       else if (s.indexOf('ドラマ') !== -1) counts.drama++;
       else if (s.indexOf('映画') !== -1) counts.movie++;
       else if (s.indexOf('小説') !== -1 || s.indexOf('ラノベ') !== -1 || s.indexOf('ライトノベル') !== -1) counts.novel++;
