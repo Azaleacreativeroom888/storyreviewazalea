@@ -294,6 +294,37 @@
   border-radius: 20px;
   padding: 2px 12px;
 }
+
+    /* ===== CATEGORY COUNT BOX ===== */
+.count-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 8px;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid #f48fb1;
+  border-radius: 16px;
+  padding: .9rem;
+  margin-bottom: 1.5rem;
+}
+.count-item {
+  background: #fce4ec;
+  border-radius: 12px;
+  padding: .6rem .4rem;
+  text-align: center;
+}
+.count-num {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #c2185b;
+  line-height: 1.2;
+}
+.count-label {
+  display: block;
+  font-size: 11.5px;
+  color: #ad1457;
+  margin-top: 2px;
+}
   </style>
 </head>
 <body>
@@ -316,6 +347,14 @@
       <h1>📝 書評 — 2026年ランキング</h1>
       <p>備忘録。書評なのでネタバレを含みます。ランキングは上下します。最終的な2026年のランキングは年末に決まります。</p>
     </div>
+
+    <div class="count-box">
+  <div class="count-item"><span class="count-num" id="cnt-novel">0</span><span class="count-label">📚 小説</span></div>
+  <div class="count-item"><span class="count-num" id="cnt-drama">0</span><span class="count-label">📺 ドラマ</span></div>
+  <div class="count-item"><span class="count-num" id="cnt-movie">0</span><span class="count-label">🎬 映画</span></div>
+  <div class="count-item"><span class="count-num" id="cnt-anime">0</span><span class="count-label">✨ アニメ</span></div>
+  <div class="count-item"><span class="count-num" id="cnt-other">0</span><span class="count-label">🎲 その他</span></div>
+</div>
 
     <!-- TOP 5 -->
     <div class="section-head">🏆 最新トップ10</div>
@@ -1171,10 +1210,26 @@
 
   <script>
   (function () {
+    // 件数（一覧とトップ10）
     var list = document.querySelectorAll('.review-list .review-item').length;
     var top = document.querySelectorAll('.top5 .top-card').length;
     document.getElementById('reviewCount').textContent =
       '全' + list + '件（トップ' + top + 'と合わせて' + (list + top) + '件）';
+
+    // ジャンル別カウント（トップ10＋一覧すべて）
+    var counts = { novel: 0, drama: 0, movie: 0, anime: 0, other: 0 };
+    document.querySelectorAll('.top5 .genre-tag, .review-list .genre-tag').forEach(function (tag) {
+      var s = tag.textContent;
+      if (s.indexOf('アニメ') !== -1) counts.anime++;
+      else if (s.indexOf('ドラマ') !== -1) counts.drama++;
+      else if (s.indexOf('映画') !== -1) counts.movie++;
+      else if (s.indexOf('小説') !== -1 || s.indexOf('ラノベ') !== -1 || s.indexOf('ライトノベル') !== -1) counts.novel++;
+      else counts.other++;
+    });
+    for (var key in counts) {
+      var el = document.getElementById('cnt-' + key);
+      if (el) el.textContent = counts[key];
+    }
   })();
 </script>
 
