@@ -266,6 +266,34 @@
       border-top: 1px solid #f8bbd0;
       background: rgba(255,255,255,0.7);
     }
+
+    /* ===== REVIEW COUNT ===== */
+.review-list { counter-reset: review; }
+.review-list .review-item { counter-increment: review; }
+.review-list .review-item-title::before {
+  content: counter(review);
+  min-width: 26px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 11px;
+  background: #fce4ec;
+  border: 1px solid #f48fb1;
+  color: #ad1457;
+  font-size: 11px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.count-pill {
+  font-size: 12px;
+  font-weight: normal;
+  color: #ad1457;
+  background: #fce4ec;
+  border: 1px solid #f48fb1;
+  border-radius: 20px;
+  padding: 2px 12px;
+}
   </style>
 </head>
 <body>
@@ -292,6 +320,8 @@
     <!-- TOP 5 -->
     <div class="section-head">🏆 最新トップ10</div>
     <div class="top5">
+
+      <div class="section-head">📋 全レビュー一覧 <span class="count-pill" id="reviewCount"></span></div>
 
       <div class="top-card">
         <div class="rank-badge badge-1">1</div>
@@ -1138,6 +1168,15 @@
   <footer>
     <p>© レビューサイト</p>
   </footer>
+
+  <script>
+  (function () {
+    var list = document.querySelectorAll('.review-list .review-item').length;
+    var top = document.querySelectorAll('.top5 .top-card').length;
+    document.getElementById('reviewCount').textContent =
+      '全' + list + '件（トップ' + top + 'と合わせて' + (list + top) + '件）';
+  })();
+</script>
 
 </body>
 </html>
