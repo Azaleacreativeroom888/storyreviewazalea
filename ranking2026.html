@@ -328,6 +328,52 @@
   color: #ad1457;
   margin-top: 2px;
 }
+
+    /* ===== LINK BOX ===== */
+.link-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid #f48fb1;
+  border-radius: 16px;
+  padding: .9rem 1.1rem;
+  margin-bottom: 1.5rem;
+  transition: transform .15s, box-shadow .15s;
+}
+.link-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(233,30,99,.1);
+}
+.link-box-icon {
+  font-size: 22px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fce4ec;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.link-box-title {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #c2185b;
+}
+.link-box-desc {
+  display: block;
+  font-size: 12px;
+  color: #999;
+  margin-top: 2px;
+}
+.link-box-arrow {
+  margin-left: auto;
+  font-size: 18px;
+  color: #f48fb1;
+}
   </style>
 </head>
 <body>
@@ -359,6 +405,15 @@
   <div class="count-item"><span class="count-num" id="cnt-manga">0</span><span class="count-label">📖 漫画</span></div>
   <div class="count-item"><span class="count-num" id="cnt-other">0</span><span class="count-label">🎲 その他</span></div>
 </div>
+
+<a class="link-box" href="practical2027.html">
+  <div class="link-box-icon">📘</div>
+  <div>
+    <span class="link-box-title">2027年の実用書レビュー</span>
+    <span class="link-box-desc">読んだ実用書の感想と、実践してみたことの記録</span>
+  </div>
+  <span class="link-box-arrow">›</span>
+</a>
 
     <!-- TOP 5 -->
     <div class="section-head">🏆 最新トップ10</div>
