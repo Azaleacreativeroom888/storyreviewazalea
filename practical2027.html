@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2027年 実用書・ビジネス書レビュー | 作品レビューサイト</title>
+  <meta name="description" content="2027年に読んだ実用書・ビジネス書・新書の書評とレビューをまとめたページ。ランキング形式で感想を紹介しています。">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "メイリオ", "Hiragino Kaku Gothic ProN", sans-serif;
+      background-image: repeating-conic-gradient(#fff 0% 25%, #fce4ec 0% 50%);
+      background-size: 40px 40px;
+      background-attachment: fixed;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid #f48fb1;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .75rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: #c2185b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 13px;
+      text-decoration: none;
+      color: #ad1457;
+      background: #fce4ec;
+      border: 1px solid #f48fb1;
+      padding: 5px 14px;
+      border-radius: 20px;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+
+    nav a:hover { background: #f48fb1; color: #fff; }
+    nav a.active { background: #e91e63; color: #fff; border-color: #e91e63; }
+
+    /* ===== MAIN ===== */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3rem;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      background: rgba(255,255,255,0.9);
+      border-radius: 18px;
+      border: 1px solid #f48fb1;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-header h1 {
+      font-size: 1.4rem;
+      color: #c2185b;
+      margin-bottom: .4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .page-header p {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    /* ===== COUNT BOX ===== */
+    .count-box {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid #f48fb1;
+      border-radius: 16px;
+      padding: .9rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 520px) {
+      .count-box { grid-template-columns: repeat(2, 1fr); }
+    }
+    .count-item {
+      background: #fce4ec;
+      border-radius: 12px;
+      padding: .6rem .4rem;
+      text-align: center;
+    }
+    .count-num {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #c2185b;
+      line-height: 1.2;
+    }
+    .count-label {
+      display: block;
+      font-size: 11.5px;
+      color: #ad1457;
+      margin-top: 2px;
+    }
+
+    /* ===== SECTION HEADING ===== */
+    .section-head {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #c2185b;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-left: 4px;
+    }
+
+    .count-pill {
+      font-size: 12px;
+      font-weight: normal;
+      color: #ad1457;
+      background: #fce4ec;
+      border: 1px solid #f48fb1;
+      border-radius: 20px;
+      padding: 2px 12px;
+    }
+
+    /* ===== TOP 10 CARDS ===== */
+    .top5 {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .top-card {
+      background: rgba(255,255,255,0.93);
+      border-radius: 16px;
+      border: 1px solid #f48fb1;
+      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    .top-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(233,30,99,.1);
+    }
+
+    .rank-badge {
+      min-width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .badge-1 { background: #e91e63; color: #fff; font-size: 15px; }
+    .badge-2 { background: #f06292; color: #fff; }
+    .badge-3 { background: #f48fb1; color: #fff; }
+    .badge-4,
+    .badge-5,
+    .badge-6,
+    .badge-7,
+    .badge-8,
+    .badge-9,
+    .badge-10 { background: #fce4ec; color: #c2185b; border: 1px solid #f48fb1; }
+
+    .top-card-body { flex: 1; }
+
+    .top-card-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+
+    .genre-tag {
+      display: inline-block;
+      font-size: 11px;
+      color: #ad1457;
+      background: #fce4ec;
+      border-radius: 8px;
+      padding: 1px 8px;
+      margin-bottom: 6px;
+    }
+
+    .top-card-text {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.75;
+    }
+
+    /* ===== OTHER REVIEWS LIST ===== */
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      counter-reset: review 10;
+    }
+
+    .review-item {
+      background: rgba(255,255,255,0.88);
+      border-radius: 12px;
+      border: 1px solid #f8bbd0;
+      padding: .8rem 1rem;
+      transition: background .12s;
+      counter-increment: review;
+    }
+
+    .review-item:hover { background: rgba(255,255,255,0.98); }
+
+    .review-item-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #c2185b;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .review-item-title::before {
+      content: counter(review);
+      min-width: 26px;
+      height: 22px;
+      padding: 0 6px;
+      border-radius: 11px;
+      background: #fce4ec;
+      border: 1px solid #f48fb1;
+      color: #ad1457;
+      font-size: 11px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .review-item-text {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .review-item-text:empty::after {
+      content: "—";
+      color: #ccc;
+    }
+
+    /* ===== EMPTY NOTE ===== */
+    .empty-note {
+      display: none;
+      background: rgba(252,228,236,0.7);
+      border: 1px dashed #f48fb1;
+      border-radius: 12px;
+      padding: .9rem 1.1rem;
+      margin-bottom: 1.5rem;
+      font-size: 12.5px;
+      color: #ad1457;
+      text-align: center;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2rem;
+      color: #e91e63;
+      text-decoration: none;
+      font-size: 13px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid #f48fb1;
+      padding: 6px 16px;
+      border-radius: 20px;
+      transition: background .15s;
+    }
+
+    .back-link:hover { background: #fce4ec; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 12px;
+      color: #ad1457;
+      border-top: 1px solid #f8bbd0;
+      background: rgba(255,255,255,0.7);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="index.html">⭐ 作品レビューサイト</a>
+    <nav>
+      <ul>
+        <li><a href="ranking2026.html">ランキング</a></li>
+        <li><a href="blog.html">ブログ</a></li>
+        <li><a href="otaku.html">ALL TIME BEST</a></li>
+        <li><a href="contact.html">リンク</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="page-header">
+      <h1>📘 2027年 実用書・ビジネス書レビュー</h1>
+      <p>2027年に読んだ実用書・ビジネス書・新書の書評です。ランキングは上下します。最終的な2027年のランキングは年末に決まります。</p>
+    </div>
+
+    <div class="count-box">
+      <div class="count-item"><span class="count-num" id="cnt-business">0</span><span class="count-label">💼 ビジネス書</span></div>
+      <div class="count-item"><span class="count-num" id="cnt-practical">0</span><span class="count-label">🛠️ 実用書</span></div>
+      <div class="count-item"><span class="count-num" id="cnt-shinsho">0</span><span class="count-label">📗 新書</span></div>
+      <div class="count-item"><span class="count-num" id="cnt-other">0</span><span class="count-label">🎲 その他</span></div>
+    </div>
+
+    <!-- TOP 10 -->
+    <div class="section-head">🏆 最新トップ10</div>
+    <div class="top5" id="topList">
+
+      <!--
+      【トップ10のカードのひな形】コピーして、ここに貼り付けて使ってください。
+      番号は rank-badge の badge-○ と数字の2か所を合わせます（badge-1 ～ badge-10）。
+
+      <div class="top-card">
+        <div class="rank-badge badge-1">1</div>
+        <div class="top-card-body">
+          <div class="genre-tag">ビジネス本</div>
+          <div class="top-card-title">本のタイトル</div>
+          <div class="top-card-text">感想をここに書く。</div>
+        </div>
+      </div>
+      -->
+
+    </div>
+    <p class="empty-note" data-empty-for="#topList">まだトップ10の本はありません。読み終えたらここに載せます。</p>
+
+    <!-- ALL REVIEWS -->
+    <div class="section-head">📋 全レビュー一覧 <span class="count-pill" id="reviewCount"></span></div>
+    <div class="review-list" id="reviewList">
+
+      <!--
+      【一覧のひな形】コピーして、ここに貼り付けて使ってください。
+      番号は11番から自動で付きます。
+
+      <div class="review-item">
+        <div class="review-item-title">本のタイトル <span class="genre-tag">実用書</span></div>
+        <div class="review-item-text">感想をここに書く。</div>
+      </div>
+      -->
+
+    </div>
+    <p class="empty-note" data-empty-for="#reviewList">まだレビューはありません。</p>
+
+    <a class="back-link" href="index.html">← トップページに戻る</a>
+
+  </main>
+
+  <footer>
+    <p>© レビューサイト</p>
+  </footer>
+
+  <script>
+  (function () {
+    // 件数（一覧とトップ10）
+    var list = document.querySelectorAll('.review-list .review-item').length;
+    var top = document.querySelectorAll('.top5 .top-card').length;
+    document.getElementById('reviewCount').textContent =
+      '全' + list + '件（トップ' + top + 'と合わせて' + (list + top) + '件）';
+
+    // ジャンル別カウント（トップ10＋一覧すべて）
+    var counts = { business: 0, practical: 0, shinsho: 0, other: 0 };
+    document.querySelectorAll('.top5 .genre-tag, .review-list .genre-tag').forEach(function (tag) {
+      var s = tag.textContent;
+      if (s.indexOf('ビジネス') !== -1) counts.business++;
+      else if (s.indexOf('実用') !== -1) counts.practical++;
+      else if (s.indexOf('新書') !== -1) counts.shinsho++;
+      else counts.other++;
+    });
+    for (var key in counts) {
+      var el = document.getElementById('cnt-' + key);
+      if (el) el.textContent = counts[key];
+    }
+
+    // まだ何も載っていないときの案内文
+    document.querySelectorAll('[data-empty-for]').forEach(function (note) {
+      var target = document.querySelector(note.getAttribute('data-empty-for'));
+      if (target && target.children.length === 0) note.style.display = 'block';
+    });
+  })();
+  </script>
+
+</body>
+</html>
